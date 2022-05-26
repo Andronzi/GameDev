@@ -24,11 +24,10 @@ public class Move : MonoBehaviour, IMove
     {
         var transformProp = transform;
         var position = transformProp.position;
-        var groundHit = Physics2D.Raycast(new Vector2(position.x, position.y - transformProp.localScale.y * 0.52f), Vector2.down, 0.001f);
+        var groundHit = Physics2D.Raycast(new Vector2(position.x, position.y), Vector2.down, 0.001f);
         
         if (groundHit.collider == null) return false;
         return groundHit.collider.CompareTag("Ground");
-
     }
     
     public void MoveObject()
@@ -50,6 +49,6 @@ public class Move : MonoBehaviour, IMove
         MoveObject();
         Jump();
         //test for jumping
-        Debug.DrawLine(new Vector2(transform.position.x, transform.position.y - (transform.localScale.y * 0.52f)), Vector2.down, Color.red);
+        Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), Vector2.down, Color.red);
     }
 }

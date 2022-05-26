@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\EnemyRun.cs" />
      <Compile Include="Assets\scripts\Move.cs" />
      <Compile Include="Assets\scripts\IMovablePlayer.cs" />
      <Compile Include="Assets\scripts\IMove.cs" />
