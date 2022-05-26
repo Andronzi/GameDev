@@ -36,6 +36,11 @@ public class Move : MonoBehaviour, IMove
     public void MoveObject()
     {
         var horizontal = Input.GetAxis("Horizontal");
+        var transformVariable = transform;
+
+        transformVariable.eulerAngles = horizontal < 0 ? new Vector2(transformVariable.eulerAngles.x, 0) 
+            : new Vector2(transform.eulerAngles.x, 180);
+        
         _playerRigidbody.velocity = new Vector2(horizontal * movementSpeed, _playerRigidbody.velocity.y);
         animator.SetFloat("ControllerSpeed", System.Math.Abs(horizontal * movementSpeed));
     }
@@ -57,6 +62,11 @@ public class Move : MonoBehaviour, IMove
     {
         MoveObject();
         Jump();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            animator.SetTrigger("Attack");
+        }
 
         //debug ray finding
         Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), Vector2.down, Color.red);
