@@ -41,8 +41,9 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\scripts\Hero.cs" />
-     <Compile Include="Assets\scripts\Player.cs" />
+     <Compile Include="Assets\scripts\Move.cs" />
+     <Compile Include="Assets\scripts\IMovablePlayer.cs" />
+     <Compile Include="Assets\scripts\IMove.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.3f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
