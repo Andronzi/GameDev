@@ -59,9 +59,6 @@ public class Move : MonoBehaviour, IMove
         
         switch (vertical)
         {
-            case < 0:
-                transformVariable.eulerAngles = new Vector3(0, transformVariable.eulerAngles.y, 180);
-                break;
             case > 0:
                 transformVariable.eulerAngles = new Vector2(0, transformVariable.eulerAngles.y);
                 break;
