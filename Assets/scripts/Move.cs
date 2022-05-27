@@ -11,8 +11,7 @@ public class Move : MonoBehaviour, IMove
     private Rigidbody2D _playerRigidbody;
 
     public Animator animator;
-    private bool _grounded = true;
-    
+
     private void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -36,32 +35,52 @@ public class Move : MonoBehaviour, IMove
     public void MoveObject()
     {
         var horizontal = Input.GetAxis("Horizontal");
+        var vertical = Input.GetAxis("Vertical");
         var transformVariable = transform;
 
-        transformVariable.eulerAngles = horizontal < 0 ? new Vector2(transformVariable.eulerAngles.x, 0) 
-            : new Vector2(transform.eulerAngles.x, 180);
+        switch (horizontal)
+        {
+            case < 0:
+                transformVariable.eulerAngles = new Vector2(transformVariable.eulerAngles.x, 0);
+                break;
+            case > 0:
+                transformVariable.eulerAngles = new Vector2(transformVariable.eulerAngles.x, 180);
+                break;
+            default:
+            {
+                var eulerAngles = transformVariable.eulerAngles;
+                eulerAngles = new Vector2(eulerAngles.x, eulerAngles.y);
+                transformVariable.eulerAngles = eulerAngles;
+                break;
+            }
+        }
         
-        _playerRigidbody.velocity = new Vector2(horizontal * movementSpeed, _playerRigidbody.velocity.y);
+        Debug.Log(vertical);
+        
+        switch (vertical)
+        {
+            case < 0:
+                transformVariable.eulerAngles = new Vector3(0, transformVariable.eulerAngles.y, 180);
+                break;
+            case > 0:
+                transformVariable.eulerAngles = new Vector2(0, transformVariable.eulerAngles.y);
+                break;
+            default:
+            {
+                var eulerAngles = transformVariable.eulerAngles;
+                eulerAngles = new Vector2(eulerAngles.x, eulerAngles.y);
+                transformVariable.eulerAngles = eulerAngles;
+                break;
+            }
+        }
+        
+        _playerRigidbody.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed);
         animator.SetFloat("ControllerSpeed", System.Math.Abs(horizontal * movementSpeed));
     }
-
-    private void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && CheckGround())
-        {
-            _playerRigidbody.velocity = new Vector2(_playerRigidbody.velocity.x, jumpStrength);
-        }
-
-        _grounded = CheckGround();
-        animator.SetBool("Grounded", _grounded);
-        //for debug jumping
-        //Debug.Log(_grounded);
-    }
-
+    
     private void Update()
     {
         MoveObject();
-        Jump();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
