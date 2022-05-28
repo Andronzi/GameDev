@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
-    private HealthBar _healthBar;
+    public HealthBar _healthBar;
     
     void Start()
     {
@@ -22,6 +20,9 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            GetDamage(20);
+        }
     }
 }
