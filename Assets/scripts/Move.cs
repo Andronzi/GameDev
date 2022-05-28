@@ -5,12 +5,12 @@ public class Move : MonoBehaviour, IMove
 {
     [SerializeField]
     private float movementSpeed;
-    [SerializeField]
-    private float jumpStrength;
-    
+
     private Rigidbody2D _playerRigidbody;
 
     public Animator animator;
+    private static readonly int ControllerSpeed = Animator.StringToHash("ControllerSpeed");
+    private static readonly int Attack = Animator.StringToHash("Attack");
 
     private void Start()
     {
@@ -22,16 +22,6 @@ public class Move : MonoBehaviour, IMove
         }
     }
     
-    private bool CheckGround()
-    {
-        var transformProp = transform;
-        var position = transformProp.position;
-        var groundHit = Physics2D.Raycast(new Vector2(position.x, position.y), Vector2.down, 0.001f);
-        
-        if (groundHit.collider == null) return false;
-        return groundHit.collider.CompareTag("Ground");
-    }
-    
     public void MoveObject()
     {
         var horizontal = Input.GetAxis("Horizontal");
@@ -41,26 +31,10 @@ public class Move : MonoBehaviour, IMove
         switch (horizontal)
         {
             case < 0:
-                transformVariable.eulerAngles = new Vector2(transformVariable.eulerAngles.x, 0);
-                break;
-            case > 0:
                 transformVariable.eulerAngles = new Vector2(transformVariable.eulerAngles.x, 180);
                 break;
-            default:
-            {
-                var eulerAngles = transformVariable.eulerAngles;
-                eulerAngles = new Vector2(eulerAngles.x, eulerAngles.y);
-                transformVariable.eulerAngles = eulerAngles;
-                break;
-            }
-        }
-        
-        Debug.Log(vertical);
-        
-        switch (vertical)
-        {
             case > 0:
-                transformVariable.eulerAngles = new Vector2(0, transformVariable.eulerAngles.y);
+                transformVariable.eulerAngles = new Vector2(transformVariable.eulerAngles.x, 0);
                 break;
             default:
             {
@@ -70,9 +44,10 @@ public class Move : MonoBehaviour, IMove
                 break;
             }
         }
-        
+
         _playerRigidbody.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed);
-        animator.SetFloat("ControllerSpeed", System.Math.Abs(horizontal * movementSpeed));
+        animator.SetFloat(ControllerSpeed, System.Math.Abs(horizontal * movementSpeed));
+        //Debug.Log(System.Math.Abs(horizontal * movementSpeed));
     }
     
     private void Update()
@@ -81,10 +56,10 @@ public class Move : MonoBehaviour, IMove
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger(Attack);
         }
 
         //debug ray finding
-        Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), Vector2.down, Color.red);
+        // Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), Vector2.down, Color.red);
     }
 }
