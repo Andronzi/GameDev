@@ -1,21 +1,22 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
-    public HealthBar _healthBar;
+    public HealthBar healthBar;
     
     void Start()
     {
         currentHealth = maxHealth;
-        _healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public void GetDamage(int damage)
     {
         currentHealth -= damage;
-        _healthBar.SetCurrentHealth(currentHealth);
+        healthBar.SetCurrentHealth(currentHealth);
     } 
     
     void Update()

@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float _currentHealt;
     [SerializeField]
     private float maxHealth;
+    private float _currentHealth;
 
     private void Start()
     {
-        _currentHealt = maxHealth;
+        _currentHealth = maxHealth;
     }
     
     public void GetDamage(int damage)
     {
-        _currentHealt -= damage;
-    }
-
-    void Update()
-    {
-        if (_currentHealt == 0)
+        _currentHealth -= damage;
+        
+        if (_currentHealth <= 0)
         {
             Destroy(gameObject);
         }

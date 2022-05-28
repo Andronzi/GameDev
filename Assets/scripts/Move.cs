@@ -5,15 +5,16 @@ public class Move : MonoBehaviour, IMove
 {
     [SerializeField]
     private float movementSpeed;
-
     private Rigidbody2D _playerRigidbody;
-
+    private Transform _transform;
+    
     public Animator animator;
     private static readonly int ControllerSpeed = Animator.StringToHash("ControllerSpeed");
-
+    
     private void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
+        _transform = transform;
 
         if (_playerRigidbody == null)
         {
@@ -25,28 +26,29 @@ public class Move : MonoBehaviour, IMove
     {
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
-        var transformVariable = transform;
 
         switch (horizontal)
         {
             case < 0:
-                transformVariable.eulerAngles = new Vector2(transformVariable.eulerAngles.x, 180);
+                _transform.eulerAngles = new Vector2(_transform.eulerAngles.x, 180);
                 break;
             case > 0:
-                transformVariable.eulerAngles = new Vector2(transformVariable.eulerAngles.x, 0);
+                _transform.eulerAngles = new Vector2(_transform.eulerAngles.x, 0);
                 break;
             default:
             {
-                var eulerAngles = transformVariable.eulerAngles;
+                var eulerAngles = _transform.eulerAngles;
                 eulerAngles = new Vector2(eulerAngles.x, eulerAngles.y);
-                transformVariable.eulerAngles = eulerAngles;
+                _transform.eulerAngles = eulerAngles;
                 break;
             }
         }
 
         _playerRigidbody.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed);
-        animator.SetFloat(ControllerSpeed, System.Math.Abs(horizontal * movementSpeed));
-        //Debug.Log(System.Math.Abs(horizontal * movementSpeed));
+        
+        //try for new solution
+        animator.SetFloat(ControllerSpeed, System.Math.Abs(horizontal * movementSpeed));   
+        animator.SetFloat(ControllerSpeed, System.Math.Abs(vertical * movementSpeed));
     }
     
     private void Update()

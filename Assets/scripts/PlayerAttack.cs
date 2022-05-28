@@ -11,11 +11,11 @@ public class PlayerAttack : MonoBehaviour
     private int _damageValue = 50;
 
     public LayerMask enemyLayers;
-    private static readonly int _attack = Animator.StringToHash("Attack");
+    private static readonly int attack = Animator.StringToHash("Attack");
 
     private void Attack()
     {
-        animator.SetTrigger(_attack);
+        animator.SetTrigger(attack);
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCoords.position, attackRange, enemyLayers);
 
