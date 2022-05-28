@@ -10,7 +10,6 @@ public class Move : MonoBehaviour, IMove
 
     public Animator animator;
     private static readonly int ControllerSpeed = Animator.StringToHash("ControllerSpeed");
-    private static readonly int Attack = Animator.StringToHash("Attack");
 
     private void Start()
     {
@@ -53,11 +52,6 @@ public class Move : MonoBehaviour, IMove
     private void Update()
     {
         MoveObject();
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            animator.SetTrigger(Attack);
-        }
 
         //debug ray finding
         // Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), Vector2.down, Color.red);
