@@ -1,7 +1,9 @@
-﻿namespace EnemyLogic.Movement
+﻿using UnityEngine;
+
+namespace EnemyLogic.Movement
 {
     public interface IMovableEnemy
     {
-        void MoveToPlayerDirection();
+        Vector3 MoveToPlayerDirection(Vector3 position, Vector2 targetPosition);
     }
 }

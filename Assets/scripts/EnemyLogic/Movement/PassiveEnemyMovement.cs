@@ -1,10 +1,12 @@
-﻿namespace EnemyLogic.Movement
+﻿using UnityEngine;
+
+namespace EnemyLogic.Movement
 {
     public class PassiveEnemyMovement : IMovableEnemy
     {
-        public void MoveToPlayerDirection()
+        public Vector3 MoveToPlayerDirection(Vector3 position, Vector2 targetPosition)
         {
-            throw new System.NotImplementedException();
+            return position;
         }
     }
 }
