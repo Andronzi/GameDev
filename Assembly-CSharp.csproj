@@ -106,6 +106,7 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\FootstepTimer.cs" />
      <Compile Include="Assets\scripts\EnemyLogic\EnemyModel.cs" />
      <Compile Include="Assets\scripts\EnemyLogic\EnemyFactory.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\EnemyTypes.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\RF_Catacombs_v1.0\public-license.txt" />

@@ -3,7 +3,7 @@
     public class EnemyModel
     {
         private float _currentHealth;
-        public EnemyDescription Description { get; }
+        private EnemyDescription Description { get; }
 
         public EnemyModel(EnemyDescription description)
         {

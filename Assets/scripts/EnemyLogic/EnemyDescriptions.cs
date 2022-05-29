@@ -7,11 +7,11 @@ namespace EnemyLogic
     public class EnemyDescriptions : ScriptableObject
     {
         [SerializeField]
-        private List<EnemyDescription> _activeEnemiesList;
+        private List<EnemyDescription> activeEnemiesList;
         [SerializeField]
-        private List<EnemyDescription> _passiveEnemiesList;
+        private List<EnemyDescription> passiveEnemiesList;
 
-        public List<EnemyDescription> ActiveEnemiesList => _activeEnemiesList;
-        public List<EnemyDescription> PassiveEnemiesList => _passiveEnemiesList;
+        public List<EnemyDescription> ActiveEnemiesList => activeEnemiesList;
+        public List<EnemyDescription> PassiveEnemiesList => passiveEnemiesList;
     }
 }

@@ -5,11 +5,11 @@ namespace EnemyLogic
 {
     public class EnemyFactory
     {
-        private Dictionary<string, Func<int, EnemyModel>> enemyFactory;
+        private Dictionary<string, Func<int, EnemyModel>> _enemyFactory;
 
         public void Init(EnemyDescriptions descriptions)
         {
-            enemyFactory = new Dictionary<string, Func<int, EnemyModel>>()
+            _enemyFactory = new Dictionary<string, Func<int, EnemyModel>>()
             {
                 { "active", (level) => new EnemyModel(descriptions.ActiveEnemiesList[level]) },
                 { "passive", (level) => new EnemyModel(descriptions.PassiveEnemiesList[level]) }
@@ -18,7 +18,7 @@ namespace EnemyLogic
 
         public EnemyModel CreateEnemyModel(string enemyName, int level)
         {
-            return enemyFactory[enemyName](level);
+            return _enemyFactory[enemyName](level);
         }
     }
 }
