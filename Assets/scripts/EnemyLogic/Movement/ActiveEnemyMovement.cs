@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace EnemyLogic
+namespace EnemyLogic.Movement
 {
-    public class PassiveEnemyMovement : IMovableEnemy
+    public class ActiveEnemyMovement : IMovableEnemy
     {
         public void MoveToPlayerDirection()
         {

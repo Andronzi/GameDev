@@ -1,4 +1,4 @@
-﻿using System;
+﻿using EnemyLogic.Movement;
 using UnityEngine;
 
 namespace EnemyLogic

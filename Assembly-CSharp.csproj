@@ -50,12 +50,14 @@
      <Compile Include="Assets\scripts\Player.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Rule Override Tile\Scripts\RuleOverrideTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\StartQuest.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\Movement\ActiveEnemyMovement.cs" />
      <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\CameraController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\TranslationAnimation.cs" />
      <Compile Include="Assets\scripts\IMove.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Cutscene\Runtime\Cutscene.cs" />
      <Compile Include="Assets\scripts\HealthBar.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\Movement\IMovableEnemy.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Core\InstanceTracker.cs" />
      <Compile Include="Assets\scripts\IMovablePlayer.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\FadingSpriteSystem.cs" />
@@ -63,7 +65,7 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\MessageBar.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Animated Tile\Scripts\AnimatedTile.cs" />
      <Compile Include="Assets\scripts\Move.cs" />
-     <Compile Include="Assets\scripts\EnemyLogic\Enemy.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\EnemyDescription.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\MusicController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Random Tile\Scripts\RandomTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\GridInformation\Scripts\GridInformation.cs" />
@@ -71,6 +73,7 @@
      <Compile Include="Assets\Bandits - Pixel Art\Demo\Bandit.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\GameModel.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Core\HeapQueue.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\EnemyDescriptions.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Core\Event.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\InventoryItem.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\CharacterController2D.cs" />
@@ -89,6 +92,7 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Core\InstanceRegister.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\StopTalking.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\InventoryController.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\Movement\PassiveEnemyMovement.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\DialogController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\InputController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\SpriteButton.cs" />
@@ -96,13 +100,12 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\Quest.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Custom\FenceTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Weighted Random Tile\WeightedRandomTile.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\EnemyAttack.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\NPCController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\ShowConversation.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\FootstepTimer.cs" />
-     <Compile Include="Assets\scripts\EnemyLogic\EnemyAttack.cs" />
-     <Compile Include="Assets\scripts\EnemyLogic\IMovableEnemy.cs" />
-     <Compile Include="Assets\scripts\EnemyLogic\ActiveEnemyMovement.cs" />
-     <Compile Include="Assets\scripts\EnemyLogic\PassiveEnemyMovement.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\EnemyModel.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\EnemyFactory.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\RF_Catacombs_v1.0\public-license.txt" />

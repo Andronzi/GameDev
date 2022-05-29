@@ -1,4 +1,4 @@
-﻿namespace EnemyLogic
+﻿namespace EnemyLogic.Movement
 {
     public interface IMovableEnemy
     {
