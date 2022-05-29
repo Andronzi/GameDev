@@ -47,12 +47,15 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Terrain Tile\Scripts\TerrainTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\SpriteUIElement.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Isometric Rule Tile\IsometricRuleTile.cs" />
+     <Compile Include="Assets\scripts\Player.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Rule Override Tile\Scripts\RuleOverrideTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\StartQuest.cs" />
+     <Compile Include="Assets\scripts\CameraController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\CameraController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\TranslationAnimation.cs" />
      <Compile Include="Assets\scripts\IMove.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Cutscene\Runtime\Cutscene.cs" />
+     <Compile Include="Assets\scripts\HealthBar.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Core\InstanceTracker.cs" />
      <Compile Include="Assets\scripts\IMovablePlayer.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\FadingSpriteSystem.cs" />
@@ -60,6 +63,7 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\UI\MessageBar.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Animated Tile\Scripts\AnimatedTile.cs" />
      <Compile Include="Assets\scripts\Move.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\Enemy.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\MusicController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Random Tile\Scripts\RandomTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\GridInformation\Scripts\GridInformation.cs" />
@@ -80,6 +84,7 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Hexagonal Rule Tile\HexagonalRuleTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Tiles\Rule Tile\Scripts\RuleTile.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\CloudSystem.cs" />
+     <Compile Include="Assets\scripts\PlayerAttack.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\StoryItem.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Core\InstanceRegister.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\StopTalking.cs" />
@@ -94,11 +99,10 @@
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\NPCController.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\ShowConversation.cs" />
      <Compile Include="Assets\Creator Kit - RPG\Scripts\Gameplay\FootstepTimer.cs" />
-     <Compile Include="Assets\scripts\CameraController.cs" />
-     <Compile Include="Assets\scripts\HealthBar.cs" />
-     <Compile Include="Assets\scripts\Player.cs" />
-     <Compile Include="Assets\scripts\PlayerAttack.cs" />
-     <Compile Include="Assets\scripts\Enemy.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\EnemyAttack.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\IMovableEnemy.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\ActiveEnemyMovement.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\PassiveEnemyMovement.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\RF_Catacombs_v1.0\public-license.txt" />
