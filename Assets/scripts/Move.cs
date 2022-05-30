@@ -9,8 +9,9 @@ public class Move : MonoBehaviour, IMove
     private Transform _transform;
     
     public Animator animator;
-    private static readonly int ControllerSpeed = Animator.StringToHash("ControllerSpeed");
-    
+    private static readonly int Run = Animator.StringToHash("Run");
+    private static readonly int Idle = Animator.StringToHash("Idle");
+
     private void Start()
     {
         _playerRigidbody = GetComponent<Rigidbody2D>();
@@ -22,7 +23,7 @@ public class Move : MonoBehaviour, IMove
         }
     }
     
-    public void MoveObject()
+    public void MovePlayer()
     {
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
@@ -47,13 +48,20 @@ public class Move : MonoBehaviour, IMove
         _playerRigidbody.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed);
         
         //try for new solution
-        animator.SetFloat(ControllerSpeed, System.Math.Abs(horizontal * movementSpeed));   
-        animator.SetFloat(ControllerSpeed, System.Math.Abs(vertical * movementSpeed));
+
+        if (horizontal != 0 || vertical != 0)
+        {
+            animator.SetTrigger(Run); 
+        }
+        else if(horizontal == 0 && vertical == 0)
+        {
+            animator.SetTrigger(Idle); 
+        }
     }
     
     private void Update()
     {
-        MoveObject();
+        MovePlayer();
 
         //debug ray finding
         // Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), Vector2.down, Color.red);
