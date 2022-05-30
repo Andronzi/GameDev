@@ -615,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745493b8a375caf428bea352a3d88ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 0.5
   animator: {fileID: 1374902704}
 --- !u!50 &1374902708
 Rigidbody2D:
@@ -652,7 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1680361718}
 --- !u!114 &1374902710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,7 +670,7 @@ MonoBehaviour:
   attackRange: 0.05
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
 --- !u!61 &1374902711
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -785,7 +785,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.3
+  m_Value: 0.59
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -836,9 +836,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1680361713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eab217d8809b16499ebabed7b6838d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e2326973fb899d4d8c004e8fe508d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 1680361715}
 --- !u!1 &1798149338
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939848468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3033, y: -0.402, z: 0}
+  m_LocalPosition: {x: 0.305, y: -0.4206, z: 0}
   m_LocalScale: {x: 0.15596552, y: 0.15517166, z: 0.15596552}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -991,9 +992,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939848468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5bb491b9110347469c09c434a3f44e3, type: 3}
+  m_Script: {fileID: 11500000, guid: dc1987dcdee847c418776098fbded329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: passive
 --- !u!1 &2006392649
 GameObject:
   m_ObjectHideFlags: 0
