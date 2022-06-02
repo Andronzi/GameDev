@@ -6,12 +6,12 @@ namespace EnemyLogic.Movement
 {
     public class ActiveEnemyMovement : MonoBehaviour, IMovableEnemy
     {
-        private void HitObject(Ray ray, Queue<Node> nodesQueue, Node node, List<Node> enemiesNodes)
+        private void HitObject(RaycastHit2D hit, Queue<Node> nodesQueue, Node node, List<Node> enemiesNodes)
         {
-            Physics.Raycast(ray, out var hit);
-
             if (hit.collider != null)
             {
+                Debug.Log(hit.collider.tag);
+                
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
                     enemiesNodes.Add(node);
@@ -39,11 +39,12 @@ namespace EnemyLogic.Movement
                     if (node != null)
                     {
                         node.Parent = parentNode;
-                        Ray ray = new Ray(parentNode.Position, node.Position);
+                        RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
+                            node.Position - parentNode.Position);
+
+                        Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
                         
-                        Debug.DrawLine(parentNode.Position, node.Position, Color.green);
-                        
-                        HitObject(ray, nodesQueue, node, enemiesNodes);
+                        HitObject(hit, nodesQueue, node, enemiesNodes);
                     }
                 }
             }
@@ -57,7 +58,7 @@ namespace EnemyLogic.Movement
         {
             Debug.Log(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field));
             FindEnemy(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), field);
-            return new Vector3(5.373f, 2.003f, 1);
+            return new Vector3(5.373f, 2.003f, 0);
         }
     }
 }
