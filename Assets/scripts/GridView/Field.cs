@@ -8,7 +8,7 @@ namespace GridView
         [SerializeField]
         public float multiplier;
         private Transform _transform;
-        private Grid _grid;
+        public Grid Grid { get; private set; }
         private Vector3 _scale;
 
         private void Awake()
@@ -17,18 +17,18 @@ namespace GridView
             _scale = _transform.localScale;
             try
             {
-                _grid = new Grid((int)(Math.Round(_scale.x / multiplier)), (int)(Math.Round(_scale.y / multiplier)));   
+                Grid = new Grid((int)(Math.Round(_scale.x / multiplier)), (int)(Math.Round(_scale.y / multiplier)));   
             }
             catch (DivideByZeroException)
             {
                 throw new Exception("multiplier in field has a Zero value");
             }
-            _grid.FillNodes(multiplier, GetGridTopLeftCornerPosition()); //set coords in a left top corner
+            Grid.FillNodes(multiplier, GetGridTopLeftCornerPosition()); //set coords in a left top corner
         }
 
         private void Update()
         {
-            foreach (var node in _grid.Matrix)
+            foreach (var node in Grid.Matrix)
             {
                 Debug.DrawLine(node.Position, new Vector3(node.Position.x, node.Position.y - multiplier, 0), Color.red);
                 Debug.DrawLine(node.Position, new Vector3(node.Position.x + multiplier, node.Position.y, 0), Color.red);

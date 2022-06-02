@@ -21,5 +21,33 @@ namespace GridView
                 } 
             }
         }
+
+        public Node[] GetArrayOfNodes(float multiplier, Node node)
+        {
+            var array = new Node[4];
+            var coords = node.Position;
+
+            if (coords.y - 1 >= 0)
+            {
+                array[0] = Matrix[(int)coords.x, (int)(coords.y - 1)];
+            }
+
+            if (coords.x + 1 < Matrix.GetLength(0))
+            {
+                array[1] = Matrix[(int)coords.x + 1, (int)  coords.y];
+            }
+
+            if (coords.y + 1 < Matrix.GetLength(1))
+            {
+                array[2] = Matrix[(int)coords.x, (int)(coords.y - 1)];
+            }
+
+            if (coords.x - 1 >= 0)
+            {
+                array[3] = Matrix[(int)(coords.x + 1), (int)coords.y];
+            }
+
+            return array;
+        }
     }
 }

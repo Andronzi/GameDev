@@ -6,6 +6,7 @@ namespace GridView
     {
         //set pos
         public Vector3 Position { get; }
+        public Node Parent { get; set; }
 
         public Node(Vector3 position)
         {
