@@ -1,5 +1,6 @@
 ﻿using System;
 using EnemyLogic.Movement;
+using GridView;
 using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -11,9 +12,11 @@ namespace EnemyLogic
         private IMovableEnemy _enemyMove;
         [SerializeField]
         private string enemyType;
-
         private GameObject _hero;
-        
+        [SerializeField]
+        private Field fieldObject;
+        private Field _fieldComponent;
+
         private void Awake()
         {
             try
@@ -27,10 +30,15 @@ namespace EnemyLogic
 
             _hero = GameObject.FindWithTag("Player");
         }
+        
+        private void Start()
+        {
+            _fieldComponent = fieldObject.GetComponent<Field>();
+        }
 
         private Vector3 MoveToPlayerDirection()
         {
-            return _enemyMove.MoveToPlayerDirection( transform.position, _hero.transform.position);
+            return _enemyMove.MoveToPlayerDirection( transform.position, _hero.transform.position, _fieldComponent);
         }
 
         public void Update()
