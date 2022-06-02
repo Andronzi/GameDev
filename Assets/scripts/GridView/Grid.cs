@@ -4,20 +4,20 @@ namespace GridView
 {
     public class Grid
     {
-        private Node[,] _matrix;
+        public Node[,] Matrix { get; }
 
         public Grid(int width, int height)
         {
-            _matrix = new Node[width, height];
+            Matrix = new Node[width, height];
         }
 
-        public void FillNodes(float width, float height)
+        public void FillNodes(float multiplier, Vector3 position)
         {
-            for (int i = 0; i < _matrix.GetLength(0); ++i)
+            for (var i = 0; i < Matrix.GetLength(0); ++i)
             {
-                for (int j = 0; j < _matrix.GetLength(1); ++j)
+                for (var j = 0; j < Matrix.GetLength(1); ++j)
                 {
-                    _matrix[i, j] = new Node(width, height, new Vector3(i, j, 0));  //set Node as mat el
+                    Matrix[i, j] = new Node(new Vector3(position.x + j * multiplier, position.y - i * multiplier, 0));
                 } 
             }
         }
