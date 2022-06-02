@@ -17,7 +17,8 @@ namespace GridView
             {
                 for (var j = 0; j < Matrix.GetLength(1); ++j)
                 {
-                    Matrix[i, j] = new Node(new Vector3(position.x + j * multiplier, position.y - i * multiplier, 0));
+                    Matrix[j, i] = new Node(new Vector3(position.x + j * multiplier, 
+                        position.y - i * multiplier, 0), new Vector2(j, i));
                 } 
             }
         }
@@ -25,7 +26,7 @@ namespace GridView
         public Node[] GetArrayOfNodes(float multiplier, Node node)
         {
             var array = new Node[4];
-            var coords = node.Position;
+            var coords = node.Index;
 
             if (coords.y - 1 >= 0)
             {
@@ -39,12 +40,12 @@ namespace GridView
 
             if (coords.y + 1 < Matrix.GetLength(1))
             {
-                array[2] = Matrix[(int)coords.x, (int)(coords.y - 1)];
+                array[2] = Matrix[(int)coords.x, (int)(coords.y + 1)];
             }
 
             if (coords.x - 1 >= 0)
             {
-                array[3] = Matrix[(int)(coords.x + 1), (int)coords.y];
+                array[3] = Matrix[(int)(coords.x - 1), (int)coords.y];
             }
 
             return array;

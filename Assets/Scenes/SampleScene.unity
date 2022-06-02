@@ -795,7 +795,7 @@ GameObject:
   - component: {fileID: 1047245474}
   m_Layer: 9
   m_Name: Villager01_Idle_02 (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -900,7 +900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047245473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.29, y: -1.09, z: 0}
+  m_LocalPosition: {x: 9.27, y: 1.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1224,12 +1224,12 @@ PrefabInstance:
     - target: {fileID: 6401022081756635157, guid: 92fbdcfd1b4c962479562faa21ea3eee,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.951
+      value: 6.969
       objectReference: {fileID: 0}
     - target: {fileID: 6401022081756635157, guid: 92fbdcfd1b4c962479562faa21ea3eee,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.72
+      value: 1.896
       objectReference: {fileID: 0}
     - target: {fileID: 6401022081756635157, guid: 92fbdcfd1b4c962479562faa21ea3eee,
         type: 3}
