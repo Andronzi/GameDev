@@ -16,9 +16,9 @@ namespace EnemyLogic.Movement
                 {
                     enemiesNodes.Add(node);
                 }
-                
-                nodesQueue.Enqueue(node);
             }
+            
+            //nodesQueue.Enqueue(node);
         }
         
         private List<Node> FindEnemy(Vector2 targetPosition, Field field)
@@ -48,6 +48,7 @@ namespace EnemyLogic.Movement
                 }
             }
             
+            //ok
             Debug.Log(enemiesNodes.Count);
 
             return new List<Node>();
