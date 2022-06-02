@@ -15,8 +15,14 @@ namespace GridView
         {
             _transform = transform;
             _scale = _transform.localScale;
-
-            _grid = new Grid((int)(Math.Round(_scale.x / multiplier)), (int)(Math.Round(_scale.y / multiplier)));
+            try
+            {
+                _grid = new Grid((int)(Math.Round(_scale.x / multiplier)), (int)(Math.Round(_scale.y / multiplier)));   
+            }
+            catch (DivideByZeroException)
+            {
+                throw new Exception("multiplier in field has a Zero value");
+            }
             _grid.FillNodes(multiplier, GetGridTopLeftCornerPosition()); //set coords in a left top corner
         }
 
