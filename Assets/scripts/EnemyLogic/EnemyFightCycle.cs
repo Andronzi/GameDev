@@ -1,8 +1,6 @@
 ﻿using System;
 using EnemyLogic.Movement;
 using GridView;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace EnemyLogic
@@ -39,12 +37,12 @@ namespace EnemyLogic
 
         private Vector3 MoveToPlayerDirection()
         {
-            return _enemyMove.MoveToPlayerDirection( transform.position, _hero.transform.position, _fieldComponent);
+            return _enemyMove.MoveToPlayerDirection(transform.position, _hero.transform.position, _fieldComponent);
         }
 
         public void Update()
         {
-            transform.position = MoveToPlayerDirection();
+            MoveToPlayerDirection();
         }
     }
 }

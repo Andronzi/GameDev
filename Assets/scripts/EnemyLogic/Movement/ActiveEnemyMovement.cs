@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using GridView;
 using UnityEngine;
 
@@ -6,24 +7,19 @@ namespace EnemyLogic.Movement
 {
     public class ActiveEnemyMovement : IMovableEnemy
     {
-        private void HitObject(RaycastHit2D hit, Queue<Node> nodesQueue, Node parentNode, Node node, List<Node> enemiesNodes, bool[] visits, int size)
+        private void HitObject(RaycastHit2D hit, Queue<Node> nodesQueue, 
+            Node node, List<Node> enemiesNodes, bool[] visits, List<string> enemiesTags, int size)
         {
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.CompareTag("Enemy"))
+                if (hit.collider.gameObject.CompareTag("Enemy") && !enemiesTags.Contains(hit.collider.tag))
                 {
-                    Debug.Log(hit.collider.tag);
-                    Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.red);
                     enemiesNodes.Add(node);
+                    enemiesTags.Add(hit.collider.tag);
                 }
             }
-
-            if (!visits[(int)(node.Index.y * size + node.Index.x)])
-            {
-                nodesQueue.Enqueue(node);
-            }
-
-            visits[(int)(node.Index.y * size + node.Index.x)] = true;
+            
+            nodesQueue.Enqueue(node);
         }
         
         private List<Node> FindEnemies(Vector2 targetPosition, Field field)
@@ -33,7 +29,7 @@ namespace EnemyLogic.Movement
             Queue<Node> nodesQueue = new Queue<Node>();
             nodesQueue.Enqueue(field.Grid.Matrix[(int)(targetPosition.x), (int)(targetPosition.y)]);
             List<Node> enemiesNodes = new List<Node>();
-
+            List<string> enemiesTags = new List<string>();
 
             while (nodesQueue.Count > 0)
             {
@@ -42,7 +38,7 @@ namespace EnemyLogic.Movement
                 
                 foreach (var node in nodeArray)
                 {
-                    if (node != null)
+                    if (node != null && !visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)])
                     {
                         node.Parent = parentNode;
                         RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
@@ -50,7 +46,10 @@ namespace EnemyLogic.Movement
 
                         Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
                         
-                        HitObject(hit, nodesQueue, parentNode, node, enemiesNodes, visits, matrix.GetLength(0));
+                        HitObject(hit, nodesQueue, node, enemiesNodes, visits,
+                            enemiesTags, matrix.GetLength(0));
+                        
+                        visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)] = true;
                     }
                 }
             }
@@ -58,13 +57,27 @@ namespace EnemyLogic.Movement
             //ok
             Debug.Log(enemiesNodes.Count + "  " + nodesQueue.Count);
 
-            return new List<Node>();
+            return enemiesNodes;
         }
+
+        public Vector3 GetPlayerPosition(Node node)
+        {
+            var nextNode = node;
+            for (var i = 0; i < 100; ++i)
+            {
+                Debug.Log(nextNode.Index + " " + nextNode.Parent.Index);
+                Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.blue);
+                nextNode = nextNode.Parent;
+            }
+
+            return nextNode.Position;
+        }
+        
         public Vector3 MoveToPlayerDirection(Vector3 position, Vector2 targetPosition, Field field)
         {
             Debug.Log(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field));
-            FindEnemies(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), field);
-            return new Vector3(5.373f, 2.003f, 0);
+            List<Node> enemiesNodes = FindEnemies(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), field);
+            return GetPlayerPosition(enemiesNodes[0]);
         }
     }
 }
