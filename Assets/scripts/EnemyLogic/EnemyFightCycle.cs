@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using EnemyLogic.Movement;
 using GridView;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace EnemyLogic
@@ -14,6 +16,7 @@ namespace EnemyLogic
         [SerializeField]
         private Field fieldObject;
         private Field _fieldComponent;
+        // private float _startTime;
 
         private void Awake()
         {
@@ -32,17 +35,22 @@ namespace EnemyLogic
         private void Start()
         {
             _fieldComponent = fieldObject.GetComponent<Field>();
-            transform.position = MoveToPlayerDirection();
         }
 
-        private Vector3 MoveToPlayerDirection()
+        private List<Vector3> MoveToPlayerDirection()
         {
             return _enemyMove.MoveToPlayerDirection(transform.position, _hero.transform.position, _fieldComponent);
         }
+        
 
         public void Update()
         {
-            MoveToPlayerDirection();
+            var coordsList = MoveToPlayerDirection();
+
+            if (coordsList.Count > 0)
+            {
+                transform.position = Vector3.Lerp(transform.position, coordsList[1], 0.1f);
+            }
         }
     }
 }

@@ -17,9 +17,15 @@ namespace EnemyLogic.Movement
                     enemiesNodes.Add(node);
                     enemiesTags.Add(hit.collider.tag);
                 }
+                else if (!hit.collider.CompareTag("Ground"))
+                {
+                    nodesQueue.Enqueue(node);
+                }
             }
-            
-            nodesQueue.Enqueue(node);
+            else
+            {
+                nodesQueue.Enqueue(node);   
+            }
         }
         
         private List<Node> FindEnemies(Vector2 targetPosition, Field field)
@@ -44,7 +50,7 @@ namespace EnemyLogic.Movement
                         RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
                             node.Position - parentNode.Position, field.multiplier);
 
-                        Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
+                        // Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
                         
                         HitObject(hit, nodesQueue, node, enemiesNodes, visits,
                             enemiesTags, matrix.GetLength(0));
@@ -55,29 +61,29 @@ namespace EnemyLogic.Movement
             }
             
             //ok
-            Debug.Log(enemiesNodes.Count + "  " + nodesQueue.Count);
-
             return enemiesNodes;
         }
 
-        public Vector3 GetPlayerPosition(Node node)
+        public List<Vector3> GetPlayerPosition(Node node, Vector2 playerIndex)
         {
-            var nextNode = node;
-            for (var i = 0; i < 100; ++i)
+            List<Vector3> positions = new List<Vector3>() { node.Position };
+
+            var nextNode = node.Parent;
+            while(nextNode.Index != playerIndex)
             {
-                Debug.Log(nextNode.Index + " " + nextNode.Parent.Index);
+                positions.Add(nextNode.Parent.Position);
+                Debug.Log(nextNode.Parent.Position);
                 Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.blue);
                 nextNode = nextNode.Parent;
             }
-
-            return nextNode.Position;
+            
+            return positions;
         }
         
-        public Vector3 MoveToPlayerDirection(Vector3 position, Vector2 targetPosition, Field field)
+        public List<Vector3> MoveToPlayerDirection(Vector3 position, Vector2 targetPosition, Field field)
         {
-            Debug.Log(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field));
             List<Node> enemiesNodes = FindEnemies(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), field);
-            return GetPlayerPosition(enemiesNodes[0]);
+            return GetPlayerPosition(enemiesNodes[0], PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field));
         }
     }
 }
