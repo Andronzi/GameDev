@@ -34,6 +34,7 @@ namespace EnemyLogic
         private void Start()
         {
             _fieldComponent = fieldObject.GetComponent<Field>();
+            transform.position = MoveToPlayerDirection();
         }
 
         private Vector3 MoveToPlayerDirection()

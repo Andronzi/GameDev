@@ -4,27 +4,33 @@ using UnityEngine;
 
 namespace EnemyLogic.Movement
 {
-    public class ActiveEnemyMovement : MonoBehaviour, IMovableEnemy
+    public class ActiveEnemyMovement : IMovableEnemy
     {
-        private void HitObject(RaycastHit2D hit, Queue<Node> nodesQueue, Node node, List<Node> enemiesNodes)
+        private void HitObject(RaycastHit2D hit, Queue<Node> nodesQueue, Node parentNode, Node node, List<Node> enemiesNodes, bool[] visits, int size)
         {
             if (hit.collider != null)
             {
-                Debug.Log(hit.collider.tag);
-                
                 if (hit.collider.gameObject.CompareTag("Enemy"))
                 {
+                    Debug.Log(hit.collider.tag);
+                    Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.red);
                     enemiesNodes.Add(node);
                 }
             }
-            
-            //nodesQueue.Enqueue(node);
+
+            if (!visits[(int)(node.Index.y * size + node.Index.x)])
+            {
+                nodesQueue.Enqueue(node);
+            }
+
+            visits[(int)(node.Index.y * size + node.Index.x)] = true;
         }
         
-        private List<Node> FindEnemy(Vector2 targetPosition, Field field)
+        private List<Node> FindEnemies(Vector2 targetPosition, Field field)
         {
+            var matrix = field.Grid.Matrix;
+            bool[] visits = new bool[matrix.GetLength(0) * matrix.GetLength(1)];
             Queue<Node> nodesQueue = new Queue<Node>();
-            //Stack<Node> path = new Stack<Node>();
             nodesQueue.Enqueue(field.Grid.Matrix[(int)(targetPosition.x), (int)(targetPosition.y)]);
             List<Node> enemiesNodes = new List<Node>();
 
@@ -40,24 +46,24 @@ namespace EnemyLogic.Movement
                     {
                         node.Parent = parentNode;
                         RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
-                            node.Position - parentNode.Position);
+                            node.Position - parentNode.Position, field.multiplier);
 
                         Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
                         
-                        HitObject(hit, nodesQueue, node, enemiesNodes);
+                        HitObject(hit, nodesQueue, parentNode, node, enemiesNodes, visits, matrix.GetLength(0));
                     }
                 }
             }
             
             //ok
-            Debug.Log(enemiesNodes.Count);
+            Debug.Log(enemiesNodes.Count + "  " + nodesQueue.Count);
 
             return new List<Node>();
         }
         public Vector3 MoveToPlayerDirection(Vector3 position, Vector2 targetPosition, Field field)
         {
             Debug.Log(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field));
-            FindEnemy(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), field);
+            FindEnemies(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), field);
             return new Vector3(5.373f, 2.003f, 0);
         }
     }

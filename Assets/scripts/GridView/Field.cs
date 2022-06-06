@@ -28,11 +28,11 @@ namespace GridView
 
         private void Update()
         {
-            foreach (var node in Grid.Matrix)
-            {
-                Debug.DrawLine(node.Position, new Vector3(node.Position.x, node.Position.y - multiplier, 0), Color.red);
-                Debug.DrawLine(node.Position, new Vector3(node.Position.x + multiplier, node.Position.y, 0), Color.red);
-            }
+            // foreach (var node in Grid.Matrix)
+            // {
+            //     Debug.DrawLine(node.Position, new Vector3(node.Position.x, node.Position.y - multiplier, 0), Color.red);
+            //     Debug.DrawLine(node.Position, new Vector3(node.Position.x + multiplier, node.Position.y, 0), Color.red);
+            // }
         }
 
         public Vector3 GetGridTopLeftCornerPosition()
