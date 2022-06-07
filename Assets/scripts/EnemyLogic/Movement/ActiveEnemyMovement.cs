@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using GridView;
 using UnityEngine;
 
@@ -7,8 +6,8 @@ namespace EnemyLogic.Movement
 {
     public class ActiveEnemyMovement : IMovableEnemy
     {
-        private void HitObject(RaycastHit2D hit, Queue<Node> nodesQueue, 
-            Node node, List<Node> enemiesNodes, bool[] visits, List<string> enemiesTags, int size)
+        private void HitObject(RaycastHit2D hit, RaycastHit2D hit2, Queue<Node> nodesQueue, Node parentNode,
+            Node node, List<Node> enemiesNodes, List<string> enemiesTags, Field field)
         {
             if (hit.collider != null)
             {
@@ -28,7 +27,7 @@ namespace EnemyLogic.Movement
             }
         }
         
-        private List<Node> FindEnemies(Vector2 targetPosition, Field field)
+        private List<Node> FindEnemies(Vector2 targetPosition, Transform transform, Field field)
         {
             var matrix = field.Grid.Matrix;
             bool[] visits = new bool[matrix.GetLength(0) * matrix.GetLength(1)];
@@ -49,11 +48,18 @@ namespace EnemyLogic.Movement
                         node.Parent = parentNode;
                         RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
                             node.Position - parentNode.Position, field.multiplier);
-
-                        // Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
                         
-                        HitObject(hit, nodesQueue, node, enemiesNodes, visits,
-                            enemiesTags, matrix.GetLength(0));
+                        RaycastHit2D hit2 = Physics2D.Raycast(parentNode.Position,
+                            new Vector3(parentNode.Position.x + transform.localScale.x, 
+                                parentNode.Position.y - transform.localScale.y) - parentNode.Position, field.multiplier);
+
+                        Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
+                        Debug.DrawRay(parentNode.Position, 
+                             new Vector3(parentNode.Position.x + transform.localScale.x, 
+                                 parentNode.Position.y - transform.localScale.y) - parentNode.Position, Color.magenta);
+
+                        HitObject(hit, hit2, nodesQueue, parentNode, node, enemiesNodes,
+                            enemiesTags, field);
                         
                         visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)] = true;
                     }
@@ -72,7 +78,6 @@ namespace EnemyLogic.Movement
             while(nextNode.Index != playerIndex)
             {
                 positions.Add(nextNode.Parent.Position);
-                Debug.Log(nextNode.Parent.Position);
                 Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.blue);
                 nextNode = nextNode.Parent;
             }
@@ -80,9 +85,10 @@ namespace EnemyLogic.Movement
             return positions;
         }
         
-        public List<Vector3> MoveToPlayerDirection(Vector3 position, Vector2 targetPosition, Field field)
+        public List<Vector3> MoveToPlayerDirection(Transform transform, Vector2 targetPosition, Field field)
         {
-            List<Node> enemiesNodes = FindEnemies(PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), field);
+            List<Node> enemiesNodes = FindEnemies(
+                PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), transform, field);
             return GetPlayerPosition(enemiesNodes[0], PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field));
         }
     }

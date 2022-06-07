@@ -39,7 +39,7 @@ namespace EnemyLogic
 
         private List<Vector3> MoveToPlayerDirection()
         {
-            return _enemyMove.MoveToPlayerDirection(transform.position, _hero.transform.position, _fieldComponent);
+            return _enemyMove.MoveToPlayerDirection(transform, _hero.transform.position, _fieldComponent);
         }
         
 

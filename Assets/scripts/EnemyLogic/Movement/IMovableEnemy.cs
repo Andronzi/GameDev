@@ -6,6 +6,6 @@ namespace EnemyLogic.Movement
 {
     public interface IMovableEnemy
     {
-        List<Vector3> MoveToPlayerDirection(Vector3 position, Vector2 targetPosition, Field _field);
+        List<Vector3> MoveToPlayerDirection(Transform transform, Vector2 targetPosition, Field _field);
     }
 }
