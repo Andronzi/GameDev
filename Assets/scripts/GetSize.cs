@@ -4,6 +4,6 @@ public class GetSize : MonoBehaviour
 {
     private void Start()
     {
-        //Debug.Log(transform.localScale);
+        Debug.Log(transform.localScale);
     }
 }

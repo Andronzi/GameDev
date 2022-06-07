@@ -61,10 +61,6 @@
      <Compile Include="Assets\Scripts\EnemyLogic\EnemyModel.cs" />
      <Compile Include="Assets\Scripts\GridView\Grid.cs" />
      <Compile Include="Assets\Scripts\Player\IMovablePlayer.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\Movement\EnemyMovement.cs" />
-     <Compile Include="Assets\Scripts\Generation\RoomSpawn.cs" />
-     <Compile Include="Assets\Scripts\Generation\RoomVariants.cs" />
-     <None Include="Assets\CreatorKitRPG_Third-PartyNotice.txt" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.3f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
