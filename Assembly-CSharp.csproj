@@ -822,6 +822,8 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\scripts\Generation" />
+    <Folder Include="Assets\scripts\Menu" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
