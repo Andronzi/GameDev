@@ -38,7 +38,7 @@ namespace EnemyLogic
 
         private void Move()
         {
-            _enemyMove.MoveToPlayerDirection(_transform, _hero.transform.position, _field);
+            _enemyMove.MoveToPlayer(_transform, _hero.transform.position, _field);
         }
         
         public void Update()

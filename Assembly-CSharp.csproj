@@ -46,7 +46,6 @@
      <Compile Include="Assets\Scripts\EnemyLogic\EnemyDescription.cs" />
      <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
      <Compile Include="Assets\Scripts\Generation\RoomSpawn.cs" />
-     <Compile Include="Assets\Scripts\Player\IMove.cs" />
      <Compile Include="Assets\Scripts\EnemyLogic\EnemyTypes.cs" />
      <Compile Include="Assets\Scripts\EnemyLogic\EnemyFactory.cs" />
      <Compile Include="Assets\Scripts\GridView\Node.cs" />
@@ -56,14 +55,12 @@
      <Compile Include="Assets\Scripts\EnemyLogic\EnemyDescriptions.cs" />
      <Compile Include="Assets\Scripts\EnemyLogic\Movement\ActiveEnemyMovement.cs" />
      <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\Movement\EnemyMovement.cs" />
-     <Compile Include="Assets\Scripts\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerData.cs" />
      <Compile Include="Assets\Scripts\EnemyLogic\Movement\PassiveEnemyMovement.cs" />
      <Compile Include="Assets\Scripts\GridView\Field.cs" />
      <Compile Include="Assets\Scripts\GetSize.cs" />
      <Compile Include="Assets\Scripts\EnemyLogic\EnemyModel.cs" />
      <Compile Include="Assets\Scripts\GridView\Grid.cs" />
-     <Compile Include="Assets\Scripts\Player\IMovablePlayer.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />

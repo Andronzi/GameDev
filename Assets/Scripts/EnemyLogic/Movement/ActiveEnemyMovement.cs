@@ -6,28 +6,29 @@ namespace EnemyLogic.Movement
 {
     public class ActiveEnemyMovement : MonoBehaviour, IMovableEnemy
     {
-        private void HitObject(RaycastHit2D hit, RaycastHit2D hit2, Queue<Node> nodesQueue, Node parentNode,
-            Node node, List<Node> enemiesNodes, List<string> enemiesTags, Field field)
+        private void HitNode(RaycastHit2D hit, Queue<Node> nodesQueue,
+            Node node, List<Node> enemiesNodes, List<string> enemiesTags)
         {
-            if (hit.collider != null)
+
+            if (hit.collider == null)
             {
-                if (hit.collider.gameObject.CompareTag("Enemy") && !enemiesTags.Contains(hit.collider.tag))
-                {
-                    enemiesNodes.Add(node);
-                    enemiesTags.Add(hit.collider.tag);
-                }
-                else if (!hit.collider.CompareTag("Ground"))
-                {
-                    nodesQueue.Enqueue(node);
-                }
+                nodesQueue.Enqueue(node);
+                return;
             }
-            else
+            
+            if (!hit.collider.CompareTag("Ground"))
             {
-                nodesQueue.Enqueue(node);   
+                nodesQueue.Enqueue(node);
+            }
+
+            if (hit.collider.gameObject.CompareTag($"Enemy") && !enemiesTags.Contains(hit.collider.tag))
+            {
+                enemiesNodes.Add(node);
+                enemiesTags.Add(hit.collider.tag);
             }
         }
         
-        private List<Node> FindEnemies(Vector2 targetPosition, Transform transform, Field field)
+        private List<Node> FindEnemies(Vector2 targetPosition, Transform enemyTransform, Field field)
         {
             var matrix = field.Grid.Matrix;
             bool[] visits = new bool[matrix.GetLength(0) * matrix.GetLength(1)];
@@ -39,43 +40,36 @@ namespace EnemyLogic.Movement
             while (nodesQueue.Count > 0)
             {
                 var parentNode = nodesQueue.Dequeue();
-                Node[] nodeArray = field.Grid.GetArrayOfNodes(parentNode);
+                Node[] nodeArray = field.Grid.GetNextNodes(parentNode);
                 
                 foreach (var node in nodeArray)
                 {
-                    if (node != null && !visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)])
-                    {
-                        node.Parent = parentNode;
-                        RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
-                            node.Position - parentNode.Position, field.multiplier);
-                        
-                        RaycastHit2D hit2 = Physics2D.Raycast(parentNode.Position,
-                            new Vector3(parentNode.Position.x + transform.localScale.x, 
-                                parentNode.Position.y - transform.localScale.y) - parentNode.Position, field.multiplier);
+                    if (node == null || visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)]) continue;
+                    
+                    node.Parent = parentNode;
+                    RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
+                        node.Position - parentNode.Position, field.multiplier);
+                    var localScale = enemyTransform.localScale;
 
-                        Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
-                        Debug.DrawRay(parentNode.Position, 
-                             new Vector3(parentNode.Position.x + transform.localScale.x, 
-                                 parentNode.Position.y - transform.localScale.y) - parentNode.Position, Color.magenta);
+                    Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
+                    Debug.DrawRay(parentNode.Position, 
+                        new Vector3(parentNode.Position.x + localScale.x, 
+                            parentNode.Position.y - localScale.y) - parentNode.Position, Color.magenta);
 
-                        HitObject(hit, hit2, nodesQueue, parentNode, node, enemiesNodes,
-                            enemiesTags, field);
-                        
-                        visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)] = true;
-                    }
+                    HitNode(hit, nodesQueue, node, enemiesNodes, enemiesTags);
+                    visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)] = true;
                 }
             }
             
-            //ok
             return enemiesNodes;
         }
 
-        public List<Vector3> GetPlayerPosition(Node node, Vector2 playerIndex)
+        private List<Vector3> GetWay(Node node, Vector2 targetCoords)
         {
             List<Vector3> positions = new List<Vector3>() { node.Position };
 
             var nextNode = node.Parent;
-            while(nextNode.Index != playerIndex)
+            while(nextNode.Index != targetCoords)
             {
                 positions.Add(nextNode.Parent.Position);
                 Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.blue);
@@ -85,15 +79,15 @@ namespace EnemyLogic.Movement
             return positions;
         }
         
-        public void MoveToPlayerDirection(Transform transform, Vector2 targetPosition, Field field)
+        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field)
         {
-            List<Node> enemiesNodes = FindEnemies(
-                field.Grid.FindUnitNodeInMatrix(targetPosition, field), transform, field);
-            var coordsList = GetPlayerPosition(enemiesNodes[0], field.Grid.FindUnitNodeInMatrix(targetPosition, field));
+            var targetPosition = field.Grid.FindUnitIndex(targetCoords, field);
+            List<Node> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
+            var coordsList = GetWay(enemiesNodes[0], targetCoords);
             
             if (coordsList.Count > 0)
             {
-                transform.position = Vector3.Lerp(transform.position, coordsList[1], 0.1f);
+                transform.position = Vector3.Lerp(enemyTransform.position, coordsList[1], 0.1f);
             }
         }
     }

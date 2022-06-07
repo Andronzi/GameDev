@@ -12,7 +12,7 @@ namespace GridView
             Matrix = new Node[width, height];
         }
 
-        public void FillNodes(float multiplier, Vector3 position)
+        public void FillMatrix(float multiplier, Vector3 position)
         {
             for (var i = 0; i < Matrix.GetLength(0); ++i)
             {
@@ -24,9 +24,9 @@ namespace GridView
             }
         }
         
-        public Vector2 FindUnitNodeInMatrix(Vector2 unitPosition, Field field)
+        public Vector2 FindUnitIndex(Vector2 unitPosition, Field field)
         {
-            var fieldPosition = field.GetGridTopLeftCornerPosition();
+            var fieldPosition = field.GetLeftCornerCoords();
 
             try
             {
@@ -45,7 +45,7 @@ namespace GridView
             }
         }
 
-        public Node[] GetArrayOfNodes(Node node)
+        public Node[] GetNextNodes(Node node)
         {
             var array = new Node[4];
             var coords = node.Index;

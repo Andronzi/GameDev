@@ -23,19 +23,10 @@ namespace GridView
             {
                 throw new Exception("multiplier in field has a Zero value");
             }
-            Grid.FillNodes(multiplier, GetGridTopLeftCornerPosition()); //set coords in a left top corner
+            Grid.FillMatrix(multiplier, GetLeftCornerCoords());
         }
-
-        private void Update()
-        {
-            // foreach (var node in Grid.Matrix)
-            // {
-            //     Debug.DrawLine(node.Position, new Vector3(node.Position.x, node.Position.y - multiplier, 0), Color.red);
-            //     Debug.DrawLine(node.Position, new Vector3(node.Position.x + multiplier, node.Position.y, 0), Color.red);
-            // }
-        }
-
-        public Vector3 GetGridTopLeftCornerPosition()
+        
+        public Vector3 GetLeftCornerCoords()
         {
             var position = _transform.position;
 
