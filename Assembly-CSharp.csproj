@@ -56,6 +56,7 @@
      <Compile Include="Assets\scripts\Player\IMovablePlayer.cs" />
      <Compile Include="Assets\scripts\EnemyLogic\EnemyDescriptions.cs" />
      <Compile Include="Assets\scripts\Player\Move.cs" />
+     <Compile Include="Assets\scripts\EnemyLogic\Movement\EnemyMovement.cs" />
      <Compile Include="Assets\Bandits - Pixel Art\Demo\Bandit.cs" />
      <Compile Include="Assets\scripts\Camera\CameraController.cs" />
      <Compile Include="Assets\scripts\EnemyLogic\Movement\PassiveEnemyMovement.cs" />
@@ -821,6 +822,8 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets\scripts\Generation" />
+    <Folder Include="Assets\scripts\Menu" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
