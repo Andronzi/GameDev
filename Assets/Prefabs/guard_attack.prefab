@@ -47,7 +47,6 @@ GameObject:
   - component: {fileID: 6401022081756635153}
   - component: {fileID: 6401022081756635152}
   - component: {fileID: 6401022081756635167}
-  - component: {fileID: 6401022081756635166}
   m_Layer: 0
   m_Name: guard_attack
   m_TagString: Player
@@ -121,11 +120,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6401022081756635144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 745493b8a375caf428bea352a3d88ead, type: 3}
+  m_Script: {fileID: 11500000, guid: ba3adfdc889d58a42895d4f8607109b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0.5
   animator: {fileID: 6401022081756635159}
+  attackCoords: {fileID: 6401022081488636000}
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &6401022081756635154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6401022081756635144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1326c8e4ee6bb1745b5c876c57a4d229, type: 3}
+  m_Script: {fileID: 11500000, guid: d9222a1d838b6284e84aeb7af577a3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
@@ -150,15 +153,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6401022081756635144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4436a159ca8237d43a835661233fee4c, type: 3}
+  m_Script: {fileID: 11500000, guid: 03dca98fda9a5d24eb4d82281e810623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 0.5
   animator: {fileID: 6401022081756635159}
-  attackCoords: {fileID: 6401022081488636000}
-  attackRange: 0.05
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!61 &6401022081756635152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177,7 +176,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.375, y: 1}
-    newSize: {x: 1.375, y: 1}
+    newSize: {x: 0.22, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -231,21 +230,9 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.375, y: 1}
+  m_Size: {x: 0.22, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6401022081756635166
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6401022081756635144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06da097b2f294a149f9261316da787dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
