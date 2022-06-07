@@ -1,28 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
 using EnemyLogic.Movement;
 using GridView;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace EnemyLogic
 {
     public class EnemyFightCycle : MonoBehaviour
     {
-        private IMovableEnemy _enemyMove;
-        [SerializeField]
-        private string enemyType;
-        private GameObject _hero;
         [SerializeField]
         private Field fieldObject;
-        private Field _fieldComponent;
-        // private float _startTime;
+        [SerializeField]
+        private string enemyType;
+        private IMovableEnemy _enemyMove;
+        private GameObject _hero;
+        private Field _field;
+        private Transform _transform;
 
         private void Awake()
         {
             try
             {
-                _enemyMove = EnemyTypes.TypesDict[enemyType];
+                _enemyMove = EnemyTypes.EnemyMovementTypes[enemyType];
             }
             catch
             {
@@ -34,23 +32,18 @@ namespace EnemyLogic
         
         private void Start()
         {
-            _fieldComponent = fieldObject.GetComponent<Field>();
+            _field = fieldObject.GetComponent<Field>();
+            _transform = transform;
         }
 
-        private List<Vector3> MoveToPlayerDirection()
+        private void Move()
         {
-            return _enemyMove.MoveToPlayerDirection(transform, _hero.transform.position, _fieldComponent);
+             _enemyMove.MoveToPlayerDirection(_transform, _hero.transform.position, _field);
         }
         
-
         public void Update()
         {
-            var coordsList = MoveToPlayerDirection();
-
-            if (coordsList.Count > 0)
-            {
-                transform.position = Vector3.Lerp(transform.position, coordsList[1], 0.1f);
-            }
+            Move();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace GridView
 {
@@ -22,8 +23,29 @@ namespace GridView
                 } 
             }
         }
+        
+        public Vector2 FindUnitNodeInMatrix(Vector2 unitPosition, Field field)
+        {
+            var fieldPosition = field.GetGridTopLeftCornerPosition();
 
-        public Node[] GetArrayOfNodes(float multiplier, Node node)
+            try
+            {
+                var x = Mathf.Floor((unitPosition.x - fieldPosition.x) / field.multiplier);
+                var y = Mathf.Floor(Mathf.Abs(unitPosition.y - fieldPosition.y) / field.multiplier);
+
+                return new Vector2(x, y);
+            }
+            catch (NullReferenceException error)
+            {
+                throw new Exception(error.Message);
+            }
+            catch (DivideByZeroException)
+            {
+                throw new Exception("multiplier in field has a Zero value");
+            }
+        }
+
+        public Node[] GetArrayOfNodes(Node node)
         {
             var array = new Node[4];
             var coords = node.Index;

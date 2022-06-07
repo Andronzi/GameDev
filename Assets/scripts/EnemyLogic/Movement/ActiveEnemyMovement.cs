@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace EnemyLogic.Movement
 {
-    public class ActiveEnemyMovement : IMovableEnemy
+    public class ActiveEnemyMovement : MonoBehaviour, IMovableEnemy
     {
         private void HitObject(RaycastHit2D hit, RaycastHit2D hit2, Queue<Node> nodesQueue, Node parentNode,
             Node node, List<Node> enemiesNodes, List<string> enemiesTags, Field field)
@@ -39,7 +39,7 @@ namespace EnemyLogic.Movement
             while (nodesQueue.Count > 0)
             {
                 var parentNode = nodesQueue.Dequeue();
-                Node[] nodeArray = field.Grid.GetArrayOfNodes(field.multiplier, parentNode);
+                Node[] nodeArray = field.Grid.GetArrayOfNodes(parentNode);
                 
                 foreach (var node in nodeArray)
                 {
@@ -85,11 +85,16 @@ namespace EnemyLogic.Movement
             return positions;
         }
         
-        public List<Vector3> MoveToPlayerDirection(Transform transform, Vector2 targetPosition, Field field)
+        public void MoveToPlayerDirection(Transform transform, Vector2 targetPosition, Field field)
         {
             List<Node> enemiesNodes = FindEnemies(
-                PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field), transform, field);
-            return GetPlayerPosition(enemiesNodes[0], PlayerFinding.FindPlayerNodeInMatrix(targetPosition, field));
+                field.Grid.FindUnitNodeInMatrix(targetPosition, field), transform, field);
+            var coordsList = GetPlayerPosition(enemiesNodes[0], field.Grid.FindUnitNodeInMatrix(targetPosition, field));
+            
+            if (coordsList.Count > 0)
+            {
+                transform.position = Vector3.Lerp(transform.position, coordsList[1], 0.1f);
+            }
         }
     }
 }

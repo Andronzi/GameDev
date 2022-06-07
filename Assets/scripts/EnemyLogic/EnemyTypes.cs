@@ -6,7 +6,7 @@ namespace EnemyLogic
 {
     public static class EnemyTypes
     {
-        public static Dictionary<string, IMovableEnemy> TypesDict { get; } = new()
+        public static Dictionary<string, IMovableEnemy> EnemyMovementTypes { get; } = new()
         {
             { "active",  new ActiveEnemyMovement()},
             { "passive",  new PassiveEnemyMovement()}
