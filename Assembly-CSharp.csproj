@@ -41,26 +41,32 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\EnemyLogic\Movement\IMovableEnemy.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\EnemyDescription.cs" />
-     <Compile Include="Assets\Scripts\UI\HealthBar.cs" />
-     <Compile Include="Assets\Scripts\Player\IMove.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\EnemyTypes.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\EnemyFactory.cs" />
-     <Compile Include="Assets\Scripts\GridView\Node.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerAttack.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\EnemyFightCycle.cs" />
-     <Compile Include="Assets\Scripts\Player\Move.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\EnemyDescriptions.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\Movement\ActiveEnemyMovement.cs" />
-     <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\Movement\PassiveEnemyMovement.cs" />
-     <Compile Include="Assets\Scripts\GridView\Field.cs" />
-     <Compile Include="Assets\Scripts\GetSize.cs" />
-     <Compile Include="Assets\Scripts\EnemyLogic\EnemyModel.cs" />
-     <Compile Include="Assets\Scripts\GridView\Grid.cs" />
-     <Compile Include="Assets\Scripts\Player\IMovablePlayer.cs" />
+     <Compile Include="Assets\Bandits - Pixel Art\Demo\Bandit.cs" />
+     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+     <Compile Include="Assets\Bandits - Pixel Art\Demo\Sensor_Bandit.cs" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+     <None Include="Assets\microFantasy.v0.4\characters\all_no_trim.json" />
+     <None Include="Assets\CreatorKitRPG_Third-PartyNotice.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Fonts &amp; Materials\mr-pixel\VTF MisterPixel\Velvetyne Black Font Licence.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+     <None Include="Assets\microFantasy.v0.4\characters\all.json" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+     <None Include="Assets\RF_Catacombs_v1.0\public-license.txt" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne.json" />
+     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.3f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
      </Reference>
