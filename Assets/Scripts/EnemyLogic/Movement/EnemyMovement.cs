@@ -1,11 +1,10 @@
 ﻿using System;
-using EnemyLogic.Movement;
 using GridView;
 using UnityEngine;
 
-namespace EnemyLogic
+namespace EnemyLogic.Movement
 {
-    public class EnemyFightCycle : MonoBehaviour
+    public class EnemyMovement : MonoBehaviour
     {
         [SerializeField]
         private Field fieldObject;
