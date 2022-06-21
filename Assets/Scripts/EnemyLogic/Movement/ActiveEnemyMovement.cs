@@ -6,12 +6,48 @@ namespace EnemyLogic.Movement
 {
     public class ActiveEnemyMovement : MonoBehaviour, IMovableEnemy
     {
+        private bool HitGround(Vector3 startPosition, Vector3 direction, float distance)
+        {
+            var hit = Physics2D.Raycast(startPosition, direction * distance, distance);
+
+            if (hit.collider)
+            {
+                if (hit.collider.gameObject.CompareTag("Ground"))
+                {
+                    Debug.DrawRay(startPosition, direction * distance, Color.yellow);
+                    Debug.Log(hit.collider.tag);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
+        private bool IsHitable(Node node)
+        {
+            bool a = HitGround(node.Position, new Vector3(node.Position.x, node.Position.y + 1) - node.Position, 2f);
+            bool b = HitGround(node.Position, new Vector3(node.Position.x + 1, node.Position.y) - node.Position, 2f);
+            bool c = HitGround(node.Position, new Vector3(node.Position.x, node.Position.y - 1) - node.Position, 2f);
+            bool d = HitGround(node.Position, new Vector3(node.Position.x - 1, node.Position.y) - node.Position, 2f);
+
+            if (a || b || c || d)
+            {
+                return true;
+            } 
+            
+            return false;
+        }
         private void HitNode(RaycastHit2D hit, Queue<Node> nodesQueue,
             Node node, List<Node> enemiesNodes, List<string> enemiesTags)
         {
             if (hit.collider == null)
             {
                 nodesQueue.Enqueue(node);
+                return;
+            }
+           
+            if (IsHitable(node))
+            {
                 return;
             }
             
@@ -21,11 +57,8 @@ namespace EnemyLogic.Movement
                 enemiesTags.Add(hit.collider.tag);
                 return;
             }
-            
-            if (!hit.collider.CompareTag("Ground"))
-            {
-                nodesQueue.Enqueue(node);
-            }
+
+            nodesQueue.Enqueue(node);
         }
         
         private List<Node> FindEnemies(Vector2 targetPosition, Transform enemyTransform, Field field)
@@ -49,13 +82,8 @@ namespace EnemyLogic.Movement
                     node.Parent = parentNode;
                     RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
                         node.Position - parentNode.Position, field.multiplier);
-                    var localScale = enemyTransform.localScale;
 
                     Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
-                    Debug.DrawRay(parentNode.Position, 
-                        new Vector3(parentNode.Position.x + localScale.x, 
-                            parentNode.Position.y - localScale.y) - parentNode.Position, Color.magenta);
-
                     HitNode(hit, nodesQueue, node, enemiesNodes, enemiesTags);
                     visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)] = true;
                 }
@@ -87,7 +115,7 @@ namespace EnemyLogic.Movement
             
             if (coordsList.Count > 0)
             {
-                enemyTransform.position = Vector3.Lerp(enemyTransform.position, coordsList[1], 0.1f);
+                enemyTransform.position = Vector3.Lerp(enemyTransform.position, coordsList[1], 0.05f);
             }
         }
     }

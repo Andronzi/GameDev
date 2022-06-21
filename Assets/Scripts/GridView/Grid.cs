@@ -18,7 +18,7 @@ namespace GridView
             {
                 for (var j = 0; j < Matrix.GetLength(1); ++j)
                 {
-                    Matrix[j, i] = new Node(new Vector3(position.x + j * multiplier, 
+                    Matrix[j, i] = new Node(new Vector3(position.x + j * multiplier,
                         position.y - i * multiplier, 0), new Vector2(j, i));
                 } 
             }
