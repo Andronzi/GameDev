@@ -110,9 +110,9 @@ namespace EnemyLogic.Movement
             return way;
         }
         
-        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, string enemyCount)
+        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, string enemyName)
         {
-            Debug.Log(enemyCount);
+            Debug.Log(enemyName);
             var targetPosition = field.Grid.FindUnitIndex(targetCoords, field);
             List<Dictionary<string, Node>> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
             Node enemyNode = null;
@@ -120,7 +120,7 @@ namespace EnemyLogic.Movement
             {
                 foreach (var dict in enemiesNode)
                 {
-                    if (dict.Key == enemyCount)
+                    if (dict.Key == enemyName)
                     {
                         enemyNode = dict.Value;
                     }

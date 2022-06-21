@@ -10,7 +10,7 @@ namespace EnemyLogic.Movement
         private Field fieldObject;
         [SerializeField]
         private string enemyType;
-        [SerializeField] private string enemyCount;
+        [SerializeField] private string enemyName;
         private IMovableEnemy _enemyMove;
         private GameObject _hero;
         private Field _field;
@@ -38,7 +38,7 @@ namespace EnemyLogic.Movement
 
         private void Move()
         {
-            _enemyMove.MoveToPlayer(_transform, _hero.transform.position, _field, enemyCount);
+            _enemyMove.MoveToPlayer(_transform, _hero.transform.position, _field, enemyName);
         }
         
         public void Update()

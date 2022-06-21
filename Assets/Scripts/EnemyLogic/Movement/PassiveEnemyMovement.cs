@@ -5,7 +5,7 @@ namespace EnemyLogic.Movement
 {
     public class PassiveEnemyMovement : IMovableEnemy
     {
-        public void MoveToPlayer(Transform transform, Vector2 targetPosition, Field field, string enemyCount)
+        public void MoveToPlayer(Transform transform, Vector2 targetPosition, Field field, string enemyName)
         {
             return;
         }

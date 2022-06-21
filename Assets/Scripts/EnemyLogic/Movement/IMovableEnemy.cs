@@ -5,6 +5,6 @@ namespace EnemyLogic.Movement
 {
     public interface IMovableEnemy
     {
-        void MoveToPlayer(Transform transform, Vector2 targetPosition, Field field, string enemyCount);
+        void MoveToPlayer(Transform transform, Vector2 targetPosition, Field field, string enemyName);
     }
 }
