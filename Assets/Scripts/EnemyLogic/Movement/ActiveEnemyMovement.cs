@@ -15,7 +15,6 @@ namespace EnemyLogic.Movement
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
                     Debug.DrawRay(startPosition, direction * distance, Color.yellow);
-                    Debug.Log(hit.collider.tag);
                     return true;
                 }
             }
@@ -25,12 +24,16 @@ namespace EnemyLogic.Movement
         
         private bool IsHitable(Node node)
         {
-            bool a = HitGround(node.Position, new Vector3(node.Position.x, node.Position.y + 1) - node.Position, 2f);
-            bool b = HitGround(node.Position, new Vector3(node.Position.x + 1, node.Position.y) - node.Position, 2f);
-            bool c = HitGround(node.Position, new Vector3(node.Position.x, node.Position.y - 1) - node.Position, 2f);
-            bool d = HitGround(node.Position, new Vector3(node.Position.x - 1, node.Position.y) - node.Position, 2f);
+            bool a = HitGround(node.Position, Vector2.up, 0.8f);
+            bool b = HitGround(node.Position, Vector2.left, 0.8f);
+            bool c = HitGround(node.Position, Vector2.down, 0.8f);
+            bool d = HitGround(node.Position, Vector2.right, 0.8f);
+            bool e = HitGround(node.Position, new Vector3(node.Position.x + 1, node.Position.y + 1) - node.Position, 0.8f);
+            bool f = HitGround(node.Position, new Vector3(node.Position.x - 1, node.Position.y + 1) - node.Position, 0.8f);
+            bool g = HitGround(node.Position, new Vector3(node.Position.x + 1, node.Position.y - 1) - node.Position, 0.8f);
+            bool h = HitGround(node.Position, new Vector3(node.Position.x - 1, node.Position.y + 1) - node.Position, 0.8f);
 
-            if (a || b || c || d)
+            if (a || b || c || d || e || f || g || h)
             {
                 return true;
             } 
@@ -38,36 +41,36 @@ namespace EnemyLogic.Movement
             return false;
         }
         private void HitNode(RaycastHit2D hit, Queue<Node> nodesQueue,
-            Node node, List<Node> enemiesNodes, List<string> enemiesTags)
+            Node node, List<Dictionary<string, Node>> enemiesNodes, List<string> enemiesTags)
         {
-            if (hit.collider == null)
-            {
-                nodesQueue.Enqueue(node);
-                return;
-            }
-           
             if (IsHitable(node))
             {
                 return;
             }
             
-            if (hit.collider.gameObject.CompareTag("Enemy") && !enemiesTags.Contains(hit.collider.tag))
+            if (hit.collider == null)
             {
-                enemiesNodes.Add(node);
-                enemiesTags.Add(hit.collider.tag);
+                nodesQueue.Enqueue(node);
+                return;
+            }
+
+            if (hit.collider.gameObject.CompareTag("Enemy") && !enemiesTags.Contains(hit.collider.name))
+            {
+                enemiesNodes.Add(new Dictionary<string, Node>() { {hit.collider.name, node} });
+                enemiesTags.Add(hit.collider.name);
                 return;
             }
 
             nodesQueue.Enqueue(node);
         }
         
-        private List<Node> FindEnemies(Vector2 targetPosition, Transform enemyTransform, Field field)
+        private List<Dictionary<string, Node>> FindEnemies(Vector2 targetPosition, Transform enemyTransform, Field field)
         {
             var matrix = field.Grid.Matrix;
             bool[] visits = new bool[matrix.GetLength(0) * matrix.GetLength(1)];
             Queue<Node> nodesQueue = new Queue<Node>();
             nodesQueue.Enqueue(field.Grid.Matrix[(int)(targetPosition.x), (int)(targetPosition.y)]);
-            List<Node> enemiesNodes = new List<Node>();
+            List<Dictionary<string, Node>> enemiesNodes = new List<Dictionary<string, Node>>();
             List<string> enemiesTags = new List<string>();
 
             while (nodesQueue.Count > 0)
@@ -107,11 +110,24 @@ namespace EnemyLogic.Movement
             return way;
         }
         
-        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field)
+        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, string enemyCount)
         {
+            Debug.Log(enemyCount);
             var targetPosition = field.Grid.FindUnitIndex(targetCoords, field);
-            List<Node> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
-            var coordsList = GetWay(enemiesNodes[0], targetPosition);
+            List<Dictionary<string, Node>> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
+            Node enemyNode = null;
+            foreach (var enemiesNode in enemiesNodes)
+            {
+                foreach (var dict in enemiesNode)
+                {
+                    if (dict.Key == enemyCount)
+                    {
+                        enemyNode = dict.Value;
+                    }
+                }
+            }
+            
+            var coordsList = GetWay(enemyNode, targetPosition);
             
             if (coordsList.Count > 0)
             {
