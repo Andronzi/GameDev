@@ -14,7 +14,6 @@ namespace EnemyLogic.Movement
             {
                 if (hit.collider.gameObject.CompareTag("Ground"))
                 {
-                    Debug.DrawRay(startPosition, direction * distance, Color.yellow);
                     return true;
                 }
             }
@@ -85,8 +84,7 @@ namespace EnemyLogic.Movement
                     node.Parent = parentNode;
                     RaycastHit2D hit = Physics2D.Raycast(parentNode.Position,
                         node.Position - parentNode.Position, field.multiplier);
-
-                    Debug.DrawRay(parentNode.Position, node.Position - parentNode.Position, Color.green);
+                    
                     HitNode(hit, nodesQueue, node, enemiesNodes, enemiesTags);
                     visits[(int)(node.Index.y * matrix.GetLength(0) + node.Index.x)] = true;
                 }
@@ -112,7 +110,6 @@ namespace EnemyLogic.Movement
         
         public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, string enemyName)
         {
-            Debug.Log(enemyName);
             var targetPosition = field.Grid.FindUnitIndex(targetCoords, field);
             List<Dictionary<string, Node>> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
             Node enemyNode = null;
@@ -126,10 +123,14 @@ namespace EnemyLogic.Movement
                     }
                 }
             }
-            
-            var coordsList = GetWay(enemyNode, targetPosition);
-            
-            if (coordsList.Count > 0)
+
+            List<Vector3> coordsList = new List<Vector3>();
+            if (enemyNode != null)
+            {
+                coordsList = GetWay(enemyNode, targetPosition);   
+            }
+
+            if (coordsList.Count > 1)
             {
                 enemyTransform.position = Vector3.Lerp(enemyTransform.position, coordsList[1], 0.05f);
             }
