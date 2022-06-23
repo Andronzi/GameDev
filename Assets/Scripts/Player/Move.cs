@@ -6,22 +6,18 @@ namespace Player
     {
         [SerializeField]
         private float movementSpeed;
+        [SerializeField]
         private Rigidbody2D _playerRigidbody;
         private Transform _transform;
-    
-        public Animator animator;
+        private Vector2 _movement;
+        
+            public Animator animator;
         private static readonly int Run = Animator.StringToHash("Run");
         private static readonly int Idle = Animator.StringToHash("Idle");
 
         private void Start()
         {
-            _playerRigidbody = GetComponent<Rigidbody2D>();
             _transform = transform;
-
-            if (_playerRigidbody == null)
-            {
-                Debug.LogError("Rigidbody2D has been missed for Player");
-            }
         }
     
         public void MovePlayer()
@@ -45,27 +41,47 @@ namespace Player
                     break;
                 }
             }
-
+            
             _playerRigidbody.velocity = new Vector2(horizontal * movementSpeed, vertical * movementSpeed);
         
             //try for new solution
-
-            if (horizontal != 0 || vertical != 0)
-            {
-                animator.SetTrigger(Run); 
-            }
-            else if(horizontal == 0 && vertical == 0)
-            {
-                animator.SetTrigger(Idle); 
-            }
         }
     
         private void Update()
         {
-            MovePlayer();
+            _movement.x = Input.GetAxis("Horizontal");
+            _movement.y = Input.GetAxis("Vertical");
+            
+            switch (_movement.x)
+            {
+                case < 0:
+                    _transform.eulerAngles = new Vector2(_transform.eulerAngles.x, 180);
+                    break;
+                case > 0:
+                    _transform.eulerAngles = new Vector2(_transform.eulerAngles.x, 0);
+                    break;
+                default:
+                {
+                    var eulerAngles = _transform.eulerAngles;
+                    eulerAngles = new Vector2(eulerAngles.x, eulerAngles.y);
+                    _transform.eulerAngles = eulerAngles;
+                    break;
+                }
+            }
+            
+            if (_movement.x != 0 || _movement.y != 0)
+            {
+                animator.SetTrigger(Run); 
+            }
+            else if(_movement.x == 0 && _movement.y == 0)
+            {
+                animator.SetTrigger(Idle); 
+            }
+        }
 
-            //debug ray finding
-            // Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), Vector2.down, Color.red);
+        private void FixedUpdate()
+        {
+            _playerRigidbody.MovePosition(_playerRigidbody.position + _movement * movementSpeed * Time.fixedDeltaTime);
         }
     }
 }

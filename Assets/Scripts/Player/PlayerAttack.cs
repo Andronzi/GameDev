@@ -21,7 +21,8 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            //enemy.GetComponent<Enemy>().GetDamage(_damageValue);
+            Debug.Log(enemy);
+            enemy.GetComponent<Enemy>().TakeDamage(_damageValue);
         }
     }
     
@@ -33,8 +34,8 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    // private void OnDrawGizmosSelected()
-    // {
-    //     Gizmos.DrawWireSphere(attackCoords.position, attackRange);
-    // }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackCoords.position, attackRange);
+    }
 }
