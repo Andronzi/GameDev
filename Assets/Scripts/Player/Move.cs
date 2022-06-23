@@ -69,14 +69,8 @@ namespace Player
                 }
             }
             
-            if (_movement.x != 0 || _movement.y != 0)
-            {
-                animator.SetTrigger(Run); 
-            }
-            else if(_movement.x == 0 && _movement.y == 0)
-            {
-                animator.SetTrigger(Idle); 
-            }
+            // Debug.Log(_movement.x + " " + _movement.y);
+            animator.SetFloat("RunValue", Mathf.Abs(_movement.x) + Mathf.Abs(_movement.y));
         }
 
         private void FixedUpdate()
