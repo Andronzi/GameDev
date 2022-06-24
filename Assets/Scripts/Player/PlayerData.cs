@@ -1,31 +1,27 @@
+
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 
-namespace Player
+[System.Serializable]
+public class PlayerData
 {
-    public class PlayerData : MonoBehaviour
-    {
-        public int maxHealth = 100;
-        public int currentHealth;
-        public HealthBar healthBar;
-    
-        void Start()
-        {
-            currentHealth = maxHealth;
-            healthBar.SetMaxHealth(maxHealth);
-        }
+    public int level;
+    public int healh;
 
-        public void GetDamage(int damage)
-        {
-            currentHealth -= damage;
-            healthBar.SetCurrentHealth(currentHealth);
-        } 
-    
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
-                GetDamage(20);
-            }
-        }
+    public float[] position;
+
+    public PlayerData(Player player)
+    {
+        healh = player.currentHealth;
+
+        position = new float[3];
+        position[0] = player.transform.position.x;
+        position[1] = player.transform.position.y;
+        position[2] = player.transform.position.z;
+        
+
     }
+
 }

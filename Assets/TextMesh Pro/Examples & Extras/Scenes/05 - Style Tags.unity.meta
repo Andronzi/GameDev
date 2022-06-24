@@ -1,7 +1,24 @@
 fileFormatVersion: 2
-guid: 7dc0b4631be4ccf4a8347b1339406fbc
+guid: 70615243e2be4a81afaab9bf5d273d65
+labels:
+- Mesh
+- Text
+- Rendering
+- TextMesh
+- TextMeshPro
+- Font
+- Dynamic
+- Pro
+- Fonts
+- Advanced
+- GUI
+- Scene
+- Styles
+- Style
+- Layout
+- Atlas
+- Kerning
 DefaultImporter:
-  externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
