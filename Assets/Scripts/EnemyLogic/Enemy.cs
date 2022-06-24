@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float maxHealth = 100;
     [SerializeField] private float _currentHealth;
     [SerializeField] private float damage = 30;
+    [SerializeField] private MobHealthBar healthBar;
     private bool _flag = false;
     [SerializeField] private Animator animator;
     private static readonly int Damage = Animator.StringToHash("damage");
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
     public void TakeDamage(float damage)
     {
@@ -24,6 +26,7 @@ public class Enemy : MonoBehaviour
         if (_currentHealth >= 0)
         {
             animator.SetTrigger(Damage);   
+            healthBar.SetCurrentHealth(_currentHealth);
         }
     }
 
@@ -56,7 +59,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            animator.SetTrigger($"die");
+            animator.SetTrigger($"die");    
+            Destroy(gameObject.GetComponent<BoxCollider2D>());
         }
     }
 }
