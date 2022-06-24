@@ -96,21 +96,21 @@ namespace EnemyLogic.Movement
         private List<Vector3> GetWay(Node node, Vector2 targetCoords)
         {
             List<Vector3> way = new List<Vector3>() { node.Position };
-
+            
             var nextNode = node.Parent;
             while(nextNode.Index != targetCoords)
             {
                 way.Add(nextNode.Parent.Position);
-                Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.blue);
+                Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.red);
                 nextNode = nextNode.Parent;
             }
-            
+
             return way;
         }
 
         public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, double enemyId, float speed)
         {
-            var targetPosition = field.Grid.FindUnitIndex(targetCoords, field);
+            var targetPosition = field.Grid.FindUnitIndex(enemyTransform, targetCoords, field);
             List<Dictionary<double, Node>> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
             Node enemyNode = null;
             foreach (var enemiesNode in enemiesNodes)
@@ -129,8 +129,8 @@ namespace EnemyLogic.Movement
             {
                 coordsList = GetWay(enemyNode, targetPosition);
             }
-
-            if (coordsList.Count > 1)
+            
+            if (coordsList.Count > 0)
             {
                 enemyTransform.position = Vector3.Lerp(enemyTransform.position, coordsList[1], speed);
             }
