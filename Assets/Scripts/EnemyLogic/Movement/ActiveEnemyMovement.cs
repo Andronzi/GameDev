@@ -101,6 +101,7 @@ namespace EnemyLogic.Movement
             while(nextNode.Index != targetCoords)
             {
                 way.Add(nextNode.Parent.Position);
+                Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.blue);
                 nextNode = nextNode.Parent;
             }
             
