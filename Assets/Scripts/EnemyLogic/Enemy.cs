@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
             {
                 if (contact.collider.CompareTag("Player"))
                 {
-                    Debug.Log(contact.collider.tag + " " + Time.deltaTime);
                     contact.collider.GetComponent<Player>().GetDamage(damage * Time.deltaTime);
                 }   
             }
