@@ -1534,6 +1534,21 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &1688101228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688101217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9222a1d838b6284e84aeb7af577a3c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
 --- !u!1 &1724470248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Offset.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6401022081756635152, guid: 92fbdcfd1b4c962479562faa21ea3eee,
+        type: 3}
+      propertyPath: m_AutoTiling
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6401022081756635152, guid: 92fbdcfd1b4c962479562faa21ea3eee,
         type: 3}
