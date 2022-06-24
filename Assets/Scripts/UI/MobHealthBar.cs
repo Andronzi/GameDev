@@ -19,7 +19,6 @@ public class MobHealthBar : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(transform.parent.position);
         slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + offset);
     }
 }

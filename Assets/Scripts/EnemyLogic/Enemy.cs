@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Animator animator;
     private static readonly int Damage = Animator.StringToHash("damage");
     private static readonly int Idle = Animator.StringToHash("idle");
+    private float _deleteTime;
 
     void Start()
     {
@@ -46,21 +47,21 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (!_flag && _currentHealth <= 0)
-        {
-            gameObject.GetComponent<EnemyMovement>().isGoing = false;
-            damage = 0;
-            _flag = true;
-        }
-
         if (_currentHealth >= 0)
         {
             animator.SetTrigger(Idle);   
         }
-        else
+        
+        if (!_flag && _currentHealth <= 0)
         {
+            gameObject.GetComponent<EnemyMovement>().isGoing = false;
+            damage = 0;
             animator.SetTrigger($"die");    
             Destroy(gameObject.GetComponent<BoxCollider2D>());
+            _deleteTime = Time.time;
+            _flag = true;
         }
+        
+        if (_deleteTime > 0 && Time.time - _deleteTime >= 10) Destroy(gameObject);
     }
 }
