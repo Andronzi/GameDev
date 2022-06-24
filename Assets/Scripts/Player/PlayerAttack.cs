@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
             animator.SetTrigger(attack);
         }
 
-        if (Time.time - _attackTime >= 0.5f && Time.time - _attackTime <= 1.2f)
+        if (Time.time - _attackTime >= 0.5f && Time.time - _attackTime <= 1.3f)
         {
             Attack();
         }
