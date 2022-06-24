@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using EnemyLogic.Movement;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public float maxHealth = 100;
-    private float _currentHealth;
+    [SerializeField] private float _currentHealth;
     [SerializeField] private float damage = 30;
+    private bool _flag = false;
     
     void Start()
     {
@@ -16,7 +18,6 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
-        maxHealth -= damage;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -30,6 +31,16 @@ public class Enemy : MonoBehaviour
                     contact.collider.GetComponent<Player>().GetDamage(damage * Time.deltaTime);
                 }   
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (!_flag && _currentHealth <= 0)
+        {
+            gameObject.GetComponent<EnemyMovement>().isGoing = false;
+            damage = 0;
+            _flag = true;
         }
     }
 }

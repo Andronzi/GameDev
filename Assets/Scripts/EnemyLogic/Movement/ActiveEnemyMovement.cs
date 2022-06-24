@@ -107,8 +107,8 @@ namespace EnemyLogic.Movement
             
             return way;
         }
-        
-        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, double enemyId)
+
+        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, double enemyId, float speed)
         {
             var targetPosition = field.Grid.FindUnitIndex(targetCoords, field);
             List<Dictionary<double, Node>> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
@@ -127,12 +127,12 @@ namespace EnemyLogic.Movement
             List<Vector3> coordsList = new List<Vector3>();
             if (enemyNode != null)
             {
-                coordsList = GetWay(enemyNode, targetPosition);   
+                coordsList = GetWay(enemyNode, targetPosition);
             }
 
             if (coordsList.Count > 1)
             {
-                enemyTransform.position = Vector3.Lerp(enemyTransform.position, coordsList[1], 0.05f);
+                enemyTransform.position = Vector3.Lerp(enemyTransform.position, coordsList[1], speed);
             }
         }
     }
