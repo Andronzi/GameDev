@@ -10,14 +10,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _currentHealth;
     [SerializeField] private float damage = 30;
     private bool _flag = false;
-    
+    [SerializeField] private Animator animator;
+    private static readonly int Damage = Animator.StringToHash("damage");
+    private static readonly int Idle = Animator.StringToHash("idle");
+
     void Start()
     {
         _currentHealth = maxHealth;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _currentHealth -= damage;
+        if (_currentHealth >= 0)
+        {
+            animator.SetTrigger(Damage);   
+        }
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -41,6 +48,15 @@ public class Enemy : MonoBehaviour
             gameObject.GetComponent<EnemyMovement>().isGoing = false;
             damage = 0;
             _flag = true;
+        }
+
+        if (_currentHealth >= 0)
+        {
+            animator.SetTrigger(Idle);   
+        }
+        else
+        {
+            animator.SetTrigger($"die");
         }
     }
 }

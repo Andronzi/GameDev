@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float attackRange;
     private float _attackTime = -4.0f;
-    private int _damageValue = 1;
+    private float _damageValue = 1;
 
     public LayerMask enemyLayers;
     private static readonly int attack = Animator.StringToHash("Attack");
@@ -27,11 +27,11 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Time.time - _attackTime >= 4.0f && Input.GetKeyDown(KeyCode.Mouse0))
         {
-            _attackTime = Time.time;
             animator.SetTrigger(attack);
+            _attackTime = Time.time;
         }
 
-        if (Time.time - _attackTime >= 0.5f && Time.time - _attackTime <= 1.3f)
+        if (Time.time - _attackTime >= 0.8f && Time.time - _attackTime <= 1.5f)
         {
             Attack();
         }
