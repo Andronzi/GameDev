@@ -8,7 +8,7 @@ using UnityEngine.Assertions.Comparers;
 public class PlayerData
 {
     public int level;
-    public int healh;
+    public float healh;
 
     public float[] position;
 

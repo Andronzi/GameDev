@@ -4,12 +4,14 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public float maxHealth = 100;
     public static int playerMoney;
     public static int lvl;
-    public int currentHealth;
+    public float currentHealth;
     public HealthBar healthBar;
-    
+    [SerializeField] private Animator animator;
+    private static readonly int Health = Animator.StringToHash("health");
+
 
     public void SavePlayer()
     {
@@ -49,18 +51,14 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(float damage)
     {
         currentHealth -= damage;
         healthBar.SetCurrentHealth(currentHealth);
-    } 
-    
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
-            GetDamage(20);
-        }
     }
-    
+
+    private void Update()
+    {
+        animator.SetFloat(Health, currentHealth);
+    }
 }

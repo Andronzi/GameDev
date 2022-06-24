@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int _currentHealth;
-    [SerializeField] private int damage = 30;
+    public float maxHealth = 100;
+    private float _currentHealth;
+    [SerializeField] private float damage = 30;
     
     void Start()
     {
@@ -19,13 +19,17 @@ public class Enemy : MonoBehaviour
         maxHealth -= damage;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         foreach (var contact in collision.contacts)
         {
-            if (contact.collider.CompareTag("Player"))
+            if (contact.collider)
             {
-                contact.collider.GetComponent<Player>().GetDamage(damage);
+                if (contact.collider.CompareTag("Player"))
+                {
+                    Debug.Log(contact.collider.tag + " " + Time.deltaTime);
+                    contact.collider.GetComponent<Player>().GetDamage(damage * Time.deltaTime);
+                }   
             }
         }
     }
