@@ -17,6 +17,9 @@ namespace EnemyLogic.Movement
         private Field _field;
         private Transform _transform;
         public double enemyName;
+
+        [SerializeField]
+        private string prefabName;
         private double time;
         private void Awake()
         {
@@ -38,7 +41,7 @@ namespace EnemyLogic.Movement
         
         private void Start()
         {
-            _field = fieldObject.GetComponent<Field>();
+            _field = GameObject.Find(prefabName).GetComponent<Field>();
             _transform = transform;
         }
 
