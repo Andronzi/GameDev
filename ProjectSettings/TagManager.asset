@@ -9,6 +9,9 @@ TagManager:
   - Wall
   - Block
   - Pottion
+  - Ground
+  - Enemy
+  - floor
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
+  - Enemies
   - 
   - 
   - 
