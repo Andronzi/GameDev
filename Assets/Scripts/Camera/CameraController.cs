@@ -7,11 +7,13 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float offsetY = 0.2f;
     private Transform _player;
+    private Vector3 _position;
     private void Start()
     {
         _player = GameObject.FindWithTag("Player").transform;
+        _position = transform.position;
     }
-    
+
     private void Update()
     {
         Vector3 delta = Vector3.zero;
@@ -28,7 +30,7 @@ public class CameraController : MonoBehaviour
                 delta.x = deltaX + offsetX;
             }
         }
-        
+    
         float deltaY = _player.position.y - transform.position.y;
         if (deltaY > offsetY || deltaY < -offsetY)
         {
@@ -42,6 +44,6 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        transform.position += new Vector3(delta.x, delta.y, 0);
+        _position += new Vector3(delta.x, delta.y, 0);
     }
 }

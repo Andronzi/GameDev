@@ -123,7 +123,7 @@ TextureImporter:
         y: 1116
         width: 20
         height: 37
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -137,35 +137,14 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_1
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 1017
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7f33e552bce0a1428a67d4511d333e3
-      internalID: 65254034
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: run_2
       rect:
         serializedVersion: 2
         x: 43
         y: 992
         width: 20
-        height: 25
-      alignment: 0
+        height: 39
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -186,7 +165,7 @@ TextureImporter:
         y: 868
         width: 20
         height: 43
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -204,10 +183,10 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 43
-        y: 744
+        y: 743
         width: 20
-        height: 37
-      alignment: 0
+        height: 38
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -228,7 +207,7 @@ TextureImporter:
         y: 620
         width: 22
         height: 42
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -249,7 +228,7 @@ TextureImporter:
         y: 496
         width: 20
         height: 37
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -270,7 +249,7 @@ TextureImporter:
         y: 372
         width: 20
         height: 38
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -284,35 +263,14 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_8
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 274
-        width: 12
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d218c2133eb27294dbcc71b408a3e319
-      internalID: -655547885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: run_9
       rect:
         serializedVersion: 2
         x: 44
         y: 248
         width: 20
-        height: 26
-      alignment: 0
+        height: 38
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -333,7 +291,7 @@ TextureImporter:
         y: 124
         width: 22
         height: 37
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -354,7 +312,7 @@ TextureImporter:
         y: 0
         width: 20
         height: 36
-      alignment: 0
+      alignment: 6
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
@@ -378,18 +336,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      run_1: 65254034
-      run_8: -655547885
+      run_1: -190332948
+      run_8: 65254034
       run_2: -2030490844
-      run_9: -501314633
+      run_9: -1842702438
       run_4: 453362692
       run_5: 1748810040
-      run_7: 570668185
-      run_0: -190332948
-      run_11: 1604836409
-      run_3: -1842702438
+      run_7: 1334425872
+      run_0: 570668185
+      run_11: -655547885
+      run_3: -501314633
       run_10: 1481172490
-      run_6: 1334425872
+      run_6: 1604836409
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
