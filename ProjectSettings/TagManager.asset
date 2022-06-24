@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
+  - Rooms
+  - RoomPoint
+  - Wall
+  - Block
+  - Pottion
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - Collectable
-  - Enemies
+  - PostProcessing
+  - 
   - 
   - 
   - 

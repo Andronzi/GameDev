@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Magaz : MonoBehaviour
 {
-    public int money = 100; 
+    public int money; 
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI inventory;
  
