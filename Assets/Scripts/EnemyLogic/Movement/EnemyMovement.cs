@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Security.Cryptography;
+using System.Text;
 using GridView;
 using UnityEngine;
 
@@ -10,12 +12,12 @@ namespace EnemyLogic.Movement
         private Field fieldObject;
         [SerializeField]
         private string enemyType;
-        [SerializeField] private string enemyName;
         private IMovableEnemy _enemyMove;
         private GameObject _hero;
         private Field _field;
         private Transform _transform;
-
+        public double enemyName;
+        private double time;
         private void Awake()
         {
             try
@@ -28,6 +30,10 @@ namespace EnemyLogic.Movement
             }
 
             _hero = GameObject.FindWithTag("Player");
+            time = DateTime.Now.Subtract(DateTime.MinValue).TotalSeconds;
+            enemyName = time;
+            while (DateTime.Now.Subtract(DateTime.MinValue).TotalSeconds - time < 0.0001)
+            { }
         }
         
         private void Start()
