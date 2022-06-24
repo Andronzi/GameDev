@@ -40,7 +40,7 @@ namespace EnemyLogic.Movement
             return false;
         }
         private void HitNode(RaycastHit2D hit, Queue<Node> nodesQueue,
-            Node node, List<Dictionary<string, Node>> enemiesNodes, List<string> enemiesTags)
+            Node node, List<Dictionary<double, Node>> enemiesNodes, List<double> enemiesTags)
         {
             if (IsHitable(node))
             {
@@ -53,24 +53,24 @@ namespace EnemyLogic.Movement
                 return;
             }
 
-            if (hit.collider.gameObject.CompareTag("Enemy") && !enemiesTags.Contains(hit.collider.name))
+            if (hit.collider.gameObject.CompareTag("Enemy") && !enemiesTags.Contains(hit.collider.gameObject.GetComponent<EnemyMovement>().enemyName))
             {
-                enemiesNodes.Add(new Dictionary<string, Node>() { {hit.collider.name, node} });
-                enemiesTags.Add(hit.collider.name);
+                enemiesNodes.Add(new Dictionary<double, Node>() { {hit.collider.gameObject.GetComponent<EnemyMovement>().enemyName, node} });
+                enemiesTags.Add(hit.collider.gameObject.GetComponent<EnemyMovement>().enemyName);
                 return;
             }
 
             nodesQueue.Enqueue(node);
         }
         
-        private List<Dictionary<string, Node>> FindEnemies(Vector2 targetPosition, Transform enemyTransform, Field field)
+        private List<Dictionary<double, Node>> FindEnemies(Vector2 targetPosition, Transform enemyTransform, Field field)
         {
             var matrix = field.Grid.Matrix;
             bool[] visits = new bool[matrix.GetLength(0) * matrix.GetLength(1)];
             Queue<Node> nodesQueue = new Queue<Node>();
             nodesQueue.Enqueue(field.Grid.Matrix[(int)(targetPosition.x), (int)(targetPosition.y)]);
-            List<Dictionary<string, Node>> enemiesNodes = new List<Dictionary<string, Node>>();
-            List<string> enemiesTags = new List<string>();
+            List<Dictionary<double, Node>> enemiesNodes = new List<Dictionary<double, Node>>();
+            List<double> enemiesTags = new List<double>();
 
             while (nodesQueue.Count > 0)
             {
@@ -101,23 +101,22 @@ namespace EnemyLogic.Movement
             while(nextNode.Index != targetCoords)
             {
                 way.Add(nextNode.Parent.Position);
-                Debug.DrawRay(nextNode.Position, nextNode.Position - nextNode.Parent.Position, Color.blue);
                 nextNode = nextNode.Parent;
             }
             
             return way;
         }
         
-        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, string enemyName)
+        public void MoveToPlayer(Transform enemyTransform, Vector2 targetCoords, Field field, double enemyId)
         {
             var targetPosition = field.Grid.FindUnitIndex(targetCoords, field);
-            List<Dictionary<string, Node>> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
+            List<Dictionary<double, Node>> enemiesNodes = FindEnemies(targetPosition, enemyTransform, field);
             Node enemyNode = null;
             foreach (var enemiesNode in enemiesNodes)
             {
                 foreach (var dict in enemiesNode)
                 {
-                    if (dict.Key == enemyName)
+                    if (dict.Key == enemyId)
                     {
                         enemyNode = dict.Value;
                     }
