@@ -8,6 +8,7 @@ public class MagAttack : MonoBehaviour
     private GameObject _hero;
     [SerializeField] private GameObject obj;
     private float _creationTime;
+    [SerializeField] private float speed;
     void Start()
     {
         _hero = GameObject.FindWithTag("Player");
@@ -29,7 +30,7 @@ public class MagAttack : MonoBehaviour
             var clone = Instantiate(obj, transform.position + new Vector3(0.5f, 0, 0), 
                 Quaternion.Euler(0, 0, _hero.transform.position.y + 0.5f - transform.position.y < 0 ? 360 - (FindAngle() * 180 / Mathf.PI) - 90.0f : FindAngle() * 180 / Mathf.PI - 90.0f));
             Rigidbody2D rb = clone.GetComponent<Rigidbody2D>();
-            rb.AddRelativeForce(Vector2.up, ForceMode2D.Impulse);
+            rb.AddRelativeForce(Vector2.up * speed, ForceMode2D.Impulse);
             _creationTime = Time.time;
         }
     }
