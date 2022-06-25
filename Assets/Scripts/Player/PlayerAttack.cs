@@ -8,8 +8,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float attackRange;
     private float _attackTime = -4.0f;
-    private float _damageValue = 1;
-
+    [SerializeField] private float _damageValue = 2;
     public LayerMask enemyLayers;
     private static readonly int attack = Animator.StringToHash("Attack");
 
@@ -19,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
+            Debug.Log(enemy);
             enemy.GetComponent<Enemy>().TakeDamage(_damageValue);
         }
     }

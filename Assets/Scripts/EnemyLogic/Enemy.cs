@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     private static readonly int Damage = Animator.StringToHash("damage");
     private static readonly int Idle = Animator.StringToHash("idle");
     private float _deleteTime;
+    [SerializeField] private string type;
 
     void Start()
     {
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
         _currentHealth -= damage;
         if (_currentHealth >= 0)
         {
-            animator.SetTrigger(Damage);   
+            animator.SetTrigger(Damage);
             healthBar.SetCurrentHealth(_currentHealth);
         }
     }
@@ -47,6 +48,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (_currentHealth <= 0 && type == "mag")
+        {
+            Destroy(gameObject);
+        }
+        
         if (_currentHealth >= 0)
         {
             animator.SetTrigger(Idle);   
