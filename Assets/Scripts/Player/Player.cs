@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     {
         if (col.CompareTag("Pottion"))
         {
-            Healing(10);
+            Healing(20);
             Destroy(col.gameObject);
         }
     }

@@ -7,14 +7,14 @@ using UnityEngine.UI;
 
 public class Magaz : MonoBehaviour
 {
-    public int money; 
+    public int money = Player.playerMoney;
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI inventory;
  
 
     public void additem(string item)
     {
-        moneyText.text = money.ToString();
+        moneyText.text = Player.playerMoney.ToString();
         inventory.text += "\n" +  item;
     }
 

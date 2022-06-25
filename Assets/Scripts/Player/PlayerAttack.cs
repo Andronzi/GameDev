@@ -1,3 +1,4 @@
+using EnemyLogic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
