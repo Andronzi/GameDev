@@ -29,5 +29,7 @@ public class Strike : MonoBehaviour
                 }   
             }
         }
+        
+        Destroy(gameObject);
     }
 }

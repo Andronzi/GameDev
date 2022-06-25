@@ -133,7 +133,7 @@ MonoBehaviour:
   enemyName: NaN
   isGoing: 1
   speed: 0.01
-  prefabName: Dungeon_Tileset (1)_0
+  prefabName: 
 --- !u!114 &8562207506340107569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   damage: 30
   healthBar: {fileID: 8372483970910966868}
   animator: {fileID: 6700535056423888402}
+  type: 
 --- !u!95 &6700535056423888402
 Animator:
   serializedVersion: 4
