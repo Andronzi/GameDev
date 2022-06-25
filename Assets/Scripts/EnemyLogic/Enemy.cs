@@ -1,19 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+using Generation;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace EnemyLogic
 {
-    public int maxHealth = 100;
-    private int _currentHealth;
-    
-    void Start()
+    public class Enemy : MonoBehaviour
     {
-        _currentHealth = maxHealth;
-    }
-    public void TakeDamage(int damage)
-    {
-        _currentHealth -= damage;
-        maxHealth -= damage;
+        private Player  cash;
+        public int maxHealth = 100;
+        private int _currentHealth;
+        private Addroom _addroom;
+
+
+        void Start()
+        {
+            _currentHealth = maxHealth;
+            _addroom = GetComponentInParent<Addroom>();
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _currentHealth -= damage;
+            maxHealth -= damage;
+        }
+
+        private void Update()
+        {
+            if (_currentHealth <= 0)
+            {
+                 
+                Destroy(gameObject);
+                //GetComponent<Addroom>().enemys.RemoveAt(GetComponent<Addroom>().enemys.Count - 1);
+            }
+            
+        }
     }
 }

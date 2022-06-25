@@ -1,69 +1,68 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class RoomSpawn : MonoBehaviour
+namespace Generation
 {
-   public Direction direction;
+   public class RoomSpawn : MonoBehaviour
+   {
+      public Direction direction;
    
-   public enum Direction
-   {
-      Top,
-      Bottom,
-      Left,
-      Right,
-      None,
-   }
-
-   private RoomVariants variants;
-   private int rand;
-   private bool spawnd = false;
-   private float waitTime = 3f;
-   private void Start()
-   {
-      variants = GameObject.FindWithTag("Rooms").GetComponent<RoomVariants>();
-      Destroy(gameObject,waitTime);
-      Invoke("Spawn",0.2f);
-   }
-
-   public void Spawn()
-   {
-      if (!spawnd)
+      public enum Direction
       {
-         if (direction == Direction.Top)
-         {
-            rand = Random.Range(0, variants.topRooms.Length);
-            Instantiate(variants.topRooms[rand], transform.position, variants.topRooms[rand].transform.rotation);
-         }
-         else if (direction == Direction.Bottom)
-         {
-            rand = Random.Range(0, variants.bottomRooms.Length);
-            Instantiate(variants.bottomRooms[rand], transform.position, variants.bottomRooms[rand].transform.rotation);
-         }
-         else if (direction == Direction.Right)
-         {
-            rand = Random.Range(0, variants.rightRooms.Length);
-            Instantiate(variants.rightRooms[rand], transform.position, variants.rightRooms[rand].transform.rotation);
-         }
-         else if (direction == Direction.Left)
-         {
-            rand = Random.Range(0, variants.leftRooms.Length);
-            Instantiate(variants.leftRooms[rand], transform.position, variants.leftRooms[rand].transform.rotation);
-         }
-
-         spawnd = true;
-
+         Top,
+         Bottom,
+         Left,
+         Right,
+         None,
       }
-   }
 
-   private void OnTriggerStay2D(Collider2D other)
-   {
-      if (other.CompareTag("RoomPoint") && other.GetComponent<RoomSpawn>().spawnd)
+      private RoomVariants _variants;
+      private int _rand;
+      private bool spawnd;
+      private float waitTime = 3f;
+      private void Start()
       {
-         Destroy(gameObject);
+         _variants = GameObject.FindWithTag("Rooms").GetComponent<RoomVariants>();
+         Destroy(gameObject,waitTime);
+         Invoke("Spawn",0.2f);
+      }
+
+      public void Spawn()
+      {
+         if (!spawnd)
+         {
+            if (direction == Direction.Top)
+            {
+               _rand = Random.Range(0, _variants.topRooms.Length);
+               Instantiate(_variants.topRooms[_rand], transform.position, _variants.topRooms[_rand].transform.rotation);
+            }
+            else if (direction == Direction.Bottom)
+            {
+               _rand = Random.Range(0, _variants.bottomRooms.Length);
+               Instantiate(_variants.bottomRooms[_rand], transform.position, _variants.bottomRooms[_rand].transform.rotation);
+            }
+            else if (direction == Direction.Right)
+            {
+               _rand = Random.Range(0, _variants.rightRooms.Length);
+               Instantiate(_variants.rightRooms[_rand], transform.position, _variants.rightRooms[_rand].transform.rotation);
+            }
+            else if (direction == Direction.Left)
+            {
+               _rand = Random.Range(0, _variants.leftRooms.Length);
+               Instantiate(_variants.leftRooms[_rand], transform.position, _variants.leftRooms[_rand].transform.rotation);
+            }
+
+            spawnd = true;
+
+         }
+      }
+
+      private void OnTriggerStay2D(Collider2D other)
+      {
+         if (other.CompareTag("RoomPoint") && other.GetComponent<RoomSpawn>().spawnd)
+         {
+            Destroy(gameObject);
+         }
       }
    }
 }

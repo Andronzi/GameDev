@@ -1,3 +1,4 @@
+using EnemyLogic;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -21,7 +22,6 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log(enemy);
             enemy.GetComponent<Enemy>().TakeDamage(_damageValue);
         }
     }

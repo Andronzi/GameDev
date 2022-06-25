@@ -5,6 +5,8 @@ using UnityEngine.Serialization;
 public class Player : MonoBehaviour
 {
     public int maxHealth = 100;
+    public static int playerMoney = 111;
+    public  int lvl;
     public int currentHealth;
     public HealthBar healthBar;
     
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        
         healthBar.SetMaxHealth(maxHealth);
     }
 
