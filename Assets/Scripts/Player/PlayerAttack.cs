@@ -8,16 +8,14 @@ public class PlayerAttack : MonoBehaviour
     private Transform attackCoords;
     [SerializeField]
     private float attackRange;
-
-    private int _damageValue = 50;
+    private float _attackTime = -4.0f;
+    private float _damageValue = 1;
 
     public LayerMask enemyLayers;
     private static readonly int attack = Animator.StringToHash("Attack");
 
     private void Attack()
     {
-        animator.SetTrigger(attack);
-
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackCoords.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
@@ -28,7 +26,13 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Time.time - _attackTime >= 4.0f && Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            animator.SetTrigger(attack);
+            _attackTime = Time.time;
+        }
+
+        if (Time.time - _attackTime >= 0.8f && Time.time - _attackTime <= 1.5f)
         {
             Attack();
         }

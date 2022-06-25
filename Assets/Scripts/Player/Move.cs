@@ -12,6 +12,7 @@ public class Move : MonoBehaviour
         public Animator animator;
     private static readonly int Run = Animator.StringToHash("Run");
     private static readonly int Idle = Animator.StringToHash("Idle");
+    private static readonly int RunValue = Animator.StringToHash("RunValue");
 
     private void Start()
     {
@@ -68,7 +69,7 @@ public class Move : MonoBehaviour
         }
         
         // Debug.Log(_movement.x + " " + _movement.y);
-        animator.SetFloat("RunValue", Mathf.Abs(_movement.x) + Mathf.Abs(_movement.y));
+        animator.SetFloat(RunValue, Mathf.Abs(_movement.x) + Mathf.Abs(_movement.y));
     }
 
     private void FixedUpdate()

@@ -17,6 +17,8 @@ namespace EnemyLogic.Movement
         private Field _field;
         private Transform _transform;
         public double enemyName;
+        public bool isGoing = true;
+        [SerializeField] private float speed;
 
         [SerializeField]
         private string prefabName;
@@ -47,7 +49,10 @@ namespace EnemyLogic.Movement
 
         private void Move()
         {
-            _enemyMove.MoveToPlayer(_transform, _hero.transform.position, _field, enemyName);
+            if (isGoing)
+            {
+                _enemyMove.MoveToPlayer(_transform, _hero.transform.position, _field, enemyName, speed);   
+            }
         }
         
         public void Update()

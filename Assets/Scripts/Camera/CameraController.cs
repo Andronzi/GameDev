@@ -44,6 +44,6 @@ public class CameraController : MonoBehaviour
             }
         }
 
-        _position += new Vector3(delta.x, delta.y, 0);
+        transform.position += new Vector3(delta.x, delta.y, 0);
     }
 }

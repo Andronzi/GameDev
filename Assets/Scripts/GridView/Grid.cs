@@ -24,7 +24,7 @@ namespace GridView
             }
         }
         
-        public Vector2 FindUnitIndex(Vector2 unitPosition, Field field)
+        public Vector2 FindUnitIndex(Transform enemyTransform, Vector2 unitPosition, Field field)
         {
             var fieldPosition = field.GetLeftCornerCoords();
 
@@ -33,7 +33,14 @@ namespace GridView
                 var x = Mathf.Floor((unitPosition.x - fieldPosition.x) / field.multiplier);
                 var y = Mathf.Floor(Mathf.Abs(unitPosition.y - fieldPosition.y) / field.multiplier);
 
-                return new Vector2(x, y);
+                if (enemyTransform.transform.position.x < unitPosition.x)
+                {
+                    return new Vector2(x + 1, y);
+                }
+                else
+                {
+                    return new Vector2(x, y);
+                }
             }
             catch (NullReferenceException error)
             {
