@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
@@ -15,4 +17,6 @@ public class HealthBar : MonoBehaviour
     {
         slider.value = health;
     }
+
+   
 }

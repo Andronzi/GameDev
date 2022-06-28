@@ -12,7 +12,7 @@ namespace EnemyLogic.Movement
 
             if (hit.collider)
             {
-                if (hit.collider.gameObject.CompareTag("Ground"))
+                if (hit.collider.gameObject.CompareTag("Block"))
                 {
                     return true;
                 }

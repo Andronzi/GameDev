@@ -68,6 +68,6 @@ public class Enemy : MonoBehaviour
             _flag = true;
         }
         
-        if (_deleteTime > 0 && Time.time - _deleteTime >= 10) Destroy(gameObject);
+        if (_deleteTime > 0 && Time.time - _deleteTime >= 3) Destroy(gameObject);
     }
 }

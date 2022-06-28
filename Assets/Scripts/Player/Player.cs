@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public void Healing(int heal)
     {
         currentHealth += heal;
+        healthBar.SetCurrentHealth(currentHealth);
 
     }
 
